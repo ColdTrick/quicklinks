@@ -68,7 +68,7 @@ if (elgg_get_context() == "widgets") {
 }
 echo "<div class='" . $class . "'>";
 echo elgg_view("output/url", array(
-		"text" => "<i class='fa fa-plus-circle'></i> " . elgg_echo("quicklinks:add"),
+		"text" => elgg_view_icon("round-plus") . " " . elgg_echo("quicklinks:add"),
 		"href" => "quicklinks/add/" . elgg_get_logged_in_user_entity()->guid,
 		"class" => "elgg-lightbox"
 ));
