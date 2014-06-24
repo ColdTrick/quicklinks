@@ -9,8 +9,8 @@
 $container = elgg_extract("container", $vars);
 
 echo "<div>";
-echo "<label for='quicklinks-add-title'>" . elgg_echo("title") . "</label>";
-echo elgg_view("input/text", array("name" => "title", "id" => "quicklinks-add-title"));
+echo "<label for='quicklinks-add-title'>" . elgg_echo("title") . "*</label>";
+echo elgg_view("input/text", array("name" => "title", "id" => "quicklinks-add-title", "required" => "required"));
 echo "</div>";
 
 echo "<div>";
