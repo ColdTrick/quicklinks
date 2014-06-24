@@ -16,7 +16,7 @@ if (!elgg_instanceof($owner, "user")) {
 }
 
 if (!empty($owner)) {
-	echo elgg_view("quicklinks/list", array("owner" => $owner, "limit" => $num_display, "pagination" => false));
+	echo elgg_view("quicklinks/list", array("owner" => $owner, "limit" => $num_display));
 } else {
 	echo elgg_view("output/longtext", array("value" => elgg_echo("loggedinrequired")));
 }

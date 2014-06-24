@@ -11,8 +11,11 @@ if ($num_display < 1) {
 }
 
 echo "<div>";
-echo "<label for='quicklinks-wdiget-num-display-" . $widget->getGUID() . "'>";
-echo elgg_echo("widget:numbertodisplay");
-echo "</label>";
-echo elgg_view("input/select", array("name" => "params[num_display]", "value" => $num_display, "options" => range(1,10), "class" => "mls"));
+echo "<label>" . elgg_echo("widget:numbertodisplay") . "</label>";
+echo elgg_view("input/select", array(
+	"name" => "params[num_display]", 
+	"value" => $num_display, 
+	"options" => range(1,10), 
+	"class" => "mls"
+));
 echo "</div>";

@@ -55,65 +55,6 @@ function quicklinks_register_entity_menu_hook($hook, $type, $returnvalue, $param
 }
 
 /**
- * Edit menu items in the title menu
- *
- * @param string         $hook        'register'
- * @param string         $type        'menu:title'
- * @param ElggMenuItem[] $returnvalue the current menu items
- * @param array          $params      provided params
- *
- * @return ElggMenuItem[]
- */
-function quicklinks_register_title_menu_hook($hook, $type, $returnvalue, $params) {
-	
-	if (elgg_in_context("quicklinks") && !empty($returnvalue) && is_array($returnvalue)) {
-		
-		foreach ($returnvalue as $menu_item) {
-			if ($menu_item->getName() == "add") {
-				elgg_load_js("lightbox");
-				elgg_load_css("lightbox");
-				
-				$menu_item->addLinkClass("elgg-lightbox");
-			}
-		}
-	}
-	
-	return $returnvalue;
-}
-
-/**
- * Add an url to a widget title (requires Widget Manager)
- *
- * @param string $hook        'entity:url'
- * @param string $type        'object'
- * @param string $returnvalue the current link (if any)
- * @param array  $params      provided params
- *
- * @return string
- */
-function quicklinks_widget_url_handler($hook, $type, $returnvalue, $params) {
-	
-	if (empty($returnvalue) && !empty($params) && is_array($params)) {
-		$entity = elgg_extract("entity", $params);
-		
-		if (!empty($entity) && elgg_instanceof($entity, "object", "widget")) {
-			if ($entity->handler == "quicklinks") {
-				$owner = $entity->getOwnerEntity();
-				if (!elgg_instanceof($owner, "user")) {
-					$owner = elgg_get_logged_in_user_entity();
-				}
-				
-				if (!empty($owner)) {
-					$returnvalue = "quicklinks/owner/" . $owner->username;
-				}
-			}
-		}
-	}
-	
-	return $returnvalue;
-}
-
-/**
  * Configure the correct URL for our own custom subtype
  *
  * @param string $hook        'entity:url'

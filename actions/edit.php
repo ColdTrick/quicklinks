@@ -10,8 +10,6 @@ $title = get_input("title");
 $url = get_input("url");
 $container_guid = (int) get_input("container_guid");
 
-$forward_url = REFERER;
-
 if (!empty($url)) {
 	$entity = new ElggObject();
 	$entity->subtype = QUICKLINKS_SUBTYPE;
@@ -33,4 +31,4 @@ if (!empty($url)) {
 	register_error(elgg_echo("error:missing_data"));
 }
 
-forward($forward_url);
+forward(REFERER);

@@ -30,12 +30,11 @@ function quicklinks_init() {
 	
 	// register plugin hooks
 	elgg_register_plugin_hook_handler("register", "menu:entity", "quicklinks_register_entity_menu_hook");
-	elgg_register_plugin_hook_handler("register", "menu:title", "quicklinks_register_title_menu_hook");
-	elgg_register_plugin_hook_handler("entity:url", "object", "quicklinks_widget_url_handler");
 	elgg_register_plugin_hook_handler("entity:url", "object", "quicklinks_url_handler");
 	
 	// register actions
 	elgg_register_action("quicklinks/toggle", dirname(__FILE__) . "/actions/toggle.php");
 	elgg_register_action("quicklinks/edit", dirname(__FILE__) . "/actions/edit.php");
 	elgg_register_action("quicklinks/delete", dirname(__FILE__) . "/actions/delete.php");
+	elgg_register_action("quicklinks/reorder", dirname(__FILE__) . "/actions/reorder.php");
 }
