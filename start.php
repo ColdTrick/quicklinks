@@ -30,6 +30,7 @@ function quicklinks_init() {
 	
 	// register plugin hooks
 	elgg_register_plugin_hook_handler("register", "menu:entity", "quicklinks_register_entity_menu_hook");
+	elgg_register_plugin_hook_handler("prepare", "menu:quicklinks", "quicklinks_prepare_quicklinks_menu_hook");
 	elgg_register_plugin_hook_handler("entity:url", "object", "quicklinks_url_handler");
 	
 	// register actions

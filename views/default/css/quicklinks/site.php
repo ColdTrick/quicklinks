@@ -15,3 +15,7 @@
 .elgg-menu-quicklinks li {
 	background: #FFF;
 }
+
+.elgg-widget-instance-quicklinks:hover .elgg-menu-quicklinks > li.hidden {
+	display: block;
+}

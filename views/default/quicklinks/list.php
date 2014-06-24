@@ -1,6 +1,7 @@
 <?php
 
 $owner = elgg_extract("owner", $vars, elgg_get_logged_in_user_entity());
+$limit = elgg_extract("limit", $vars, false);
 
 if (empty($owner) || !elgg_instanceof($owner, "user")) {
 	return;
@@ -51,7 +52,7 @@ if ($entities) {
 		)));
 	}
 	
-	$content = elgg_view_menu("quicklinks", array("sort_by" => "priority"));
+	$content = elgg_view_menu("quicklinks", array("sort_by" => "priority", "display_limit" => $limit));
 } else {
 	$content = elgg_view("output/longtext", array("value" => elgg_echo("notfound")));
 }
