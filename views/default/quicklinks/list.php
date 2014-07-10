@@ -28,7 +28,7 @@ $options = array(
 	"order_by" => "r.time_created DESC"
 );
 // @todo fix default time_created by adding an extra field in the select because of relationship created instead of time_created of related entity
-
+elgg_push_context("quicklinks");
 $configured_priorities = $owner->getPrivateSetting("quicklinks_order");
 if ($configured_priorities) {
 	$configured_priorities = json_decode($configured_priorities);
@@ -58,6 +58,7 @@ if ($entities) {
 }
 
 echo $content;
+elgg_pop_context();
 
 elgg_load_js("lightbox");
 elgg_load_css("lightbox");
