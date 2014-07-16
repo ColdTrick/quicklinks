@@ -38,7 +38,9 @@ if ($entities) {
 	foreach ($entities as $index => $entity) {
 		$priority = false;
 		
-		$priority = array_search($entity->guid, $configured_priorities);
+		if (!empty($configured_priorities) && is_array($configured_priorities)) {
+			$priority = array_search($entity->guid, $configured_priorities);
+		}
 		
 		if ($priority === false) {
 			$priority = $entity->time_created;
