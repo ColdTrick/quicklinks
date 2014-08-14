@@ -33,7 +33,7 @@ function quicklinks_register_entity_menu_hook($hook, $type, $returnvalue, $param
 					"href" => "action/quicklinks/toggle?guid=" . $entity->getGUID(),
 					"title" => elgg_echo("quicklinks:menu:entity:title"),
 					"is_action" => true,
-					"item_class" => $linked ? "" : "hidden"
+					"item_class" => $linked ? "hidden" : ""
 				));
 				$returnvalue[] = ElggMenuItem::factory(array(
 					"name" => "quicklinks_remove",
@@ -41,7 +41,7 @@ function quicklinks_register_entity_menu_hook($hook, $type, $returnvalue, $param
 					"href" => "action/quicklinks/toggle?guid=" . $entity->getGUID(),
 					"title" => elgg_echo("quicklinks:menu:entity:title"),
 					"is_action" => true,
-					"item_class" => $linked ? "hidden" : ""
+					"item_class" => $linked ? "" : "hidden"
 				));
 			}
 			
