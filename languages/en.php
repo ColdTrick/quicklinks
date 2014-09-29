@@ -3,6 +3,7 @@
 return array(
 	'quicklinks' => "QuickLinks",
 	'quicklinks:add' => "Add QuickLink",
+	'quicklinks:move' => "Move",
 	
 	// menu's
 	'quicklinks:menu:entity:title' => "Toggle show in QuickLinks",

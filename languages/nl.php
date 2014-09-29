@@ -9,6 +9,7 @@ $language = array (
   'quicklinks:edit:url' => 'Website URL',
   'quicklinks' => 'Mijn links',
   'quicklinks:add' => 'Link toevoegen',
+  'quicklinks:move' => 'verplaats',
   'quicklinks:menu:entity:title' => 'Toon in mijn links',
   'quicklinks:widget:title' => 'Mijn links',
   'quicklinks:widget:description' => 'Toont al je favoriete links',

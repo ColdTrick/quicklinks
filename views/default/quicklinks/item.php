@@ -11,8 +11,8 @@ if (elgg_instanceof($entity, "object", QUICKLINKS_SUBTYPE)) {
 }
 
 $move_options = array(
-	"text" => elgg_view_icon("cursor-drag-arrow"), 
-	"title" => elgg_echo("move"), 
+	"text" => elgg_view_icon("cursor-drag-arrow"),
+	"title" => elgg_echo("quicklinks:move"),
 	"href" => "#",
 );
 
