@@ -34,28 +34,27 @@ if ($configured_priorities) {
 	$configured_priorities = json_decode($configured_priorities);
 }
 $entities = new ElggBatch("elgg_get_entities_from_relationship", $options);
-if ($entities) {
-	foreach ($entities as $index => $entity) {
-		$priority = false;
-		
-		if (!empty($configured_priorities) && is_array($configured_priorities)) {
-			$priority = array_search($entity->guid, $configured_priorities);
-		}
-		
-		if ($priority === false) {
-			$priority = $entity->time_created;
-		}
-		elgg_register_menu_item("quicklinks", ElggMenuItem::factory(array(
-			"name" => $entity->guid,
-			"text" => elgg_view("quicklinks/item", array("entity" => $entity)),
-			"href" => false,
-			"priority" => $priority,
-			"item_class" => "clearfix elgg-discover elgg-border-plain pas mbs"
-		)));
+foreach ($entities as $index => $entity) {
+	$priority = false;
+	
+	if (!empty($configured_priorities) && is_array($configured_priorities)) {
+		$priority = array_search($entity->guid, $configured_priorities);
 	}
 	
-	$content = elgg_view_menu("quicklinks", array("sort_by" => "priority", "display_limit" => $limit));
-} else {
+	if ($priority === false) {
+		$priority = $entity->time_created;
+	}
+	elgg_register_menu_item("quicklinks", ElggMenuItem::factory(array(
+		"name" => $entity->guid,
+		"text" => elgg_view("quicklinks/item", array("entity" => $entity)),
+		"href" => false,
+		"priority" => $priority,
+		"item_class" => "clearfix elgg-discover elgg-border-plain pas mbs"
+	)));
+}
+
+$content = elgg_view_menu("quicklinks", array("sort_by" => "priority", "display_limit" => $limit));
+if (empty($content)) {
 	$content = elgg_view("output/longtext", array("value" => elgg_echo("notfound")));
 }
 
