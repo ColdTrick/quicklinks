@@ -22,7 +22,7 @@ function quicklinks_register_entity_menu_hook($hook, $type, $returnvalue, $param
 			// add quicklink toggle to registered entity types
 			$registered_entity_types = get_registered_entity_types($entity->getType());
 			
-			$black_listed_entity_subtypes = array("discussion_reply", "comment");
+			$black_listed_entity_subtypes = array("discussion_reply", "comment", "thewire");
 
 			if (!in_array($entity->getSubtype(), $black_listed_entity_subtypes) && !empty($registered_entity_types) && is_array($registered_entity_types) && in_array($entity->getSubtype(), $registered_entity_types)) {
 				$linked = check_entity_relationship(elgg_get_logged_in_user_guid(), QUICKLINKS_RELATIONSHIP, $entity->getGUID());
