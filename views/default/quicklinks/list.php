@@ -54,8 +54,8 @@ foreach ($entities as $index => $entity) {
 }
 
 $content = elgg_view_menu("quicklinks", array("sort_by" => "priority", "display_limit" => $limit));
-if (empty($content)) {
-	$content = elgg_view("output/longtext", array("value" => elgg_echo("notfound")));
+if (empty($content) && elgg_in_context("widgets")) {
+	$content = elgg_echo("notfound");
 }
 
 echo $content;
