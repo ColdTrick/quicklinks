@@ -6,6 +6,7 @@
 define("QUICKLINKS_RELATIONSHIP", "quicklinks");
 define("QUICKLINKS_SUBTYPE", "quicklink");
 
+require_once(dirname(__FILE__) . "/lib/functions.php");
 require_once(dirname(__FILE__) . "/lib/hooks.php");
 require_once(dirname(__FILE__) . "/lib/page_handlers.php");
 

@@ -15,46 +15,53 @@
  */
 function quicklinks_register_entity_menu_hook($hook, $type, $returnvalue, $params) {
 	
-	if (!empty($params) && is_array($params)) {
-		$entity = elgg_extract("entity", $params);
-		
-		if (!empty($entity) && elgg_instanceof($entity)) {
-			// add quicklink toggle to registered entity types
-			$registered_entity_types = get_registered_entity_types($entity->getType());
-			
-			$black_listed_entity_subtypes = array("discussion_reply", "comment", "thewire");
+	if (!elgg_is_logged_in()) {
+		return $returnvalue;
+	}
+	
+	if (empty($params) || !is_array($params)) {
+		return $returnvalue;
+	}
+	
+	$entity = elgg_extract("entity", $params);
+	if (empty($entity) || !elgg_instanceof($entity)) {
+		return $returnvalue;
+	}
+	
+	// add quicklink toggle to registered entity types
+	$registered_entity_types = get_registered_entity_types($entity->getType());
+	
+	$black_listed_entity_subtypes = array("discussion_reply", "comment", "thewire");
 
-			if (!in_array($entity->getSubtype(), $black_listed_entity_subtypes) && !empty($registered_entity_types) && is_array($registered_entity_types) && in_array($entity->getSubtype(), $registered_entity_types)) {
-				$linked = check_entity_relationship(elgg_get_logged_in_user_guid(), QUICKLINKS_RELATIONSHIP, $entity->getGUID());
-				
-				$returnvalue[] = ElggMenuItem::factory(array(
-					"name" => "quicklinks",
-					"text" => elgg_view_icon("star-empty"),
-					"href" => "action/quicklinks/toggle?guid=" . $entity->getGUID(),
-					"title" => elgg_echo("quicklinks:menu:entity:title"),
-					"is_action" => true,
-					"item_class" => $linked ? "hidden" : ""
-				));
-				$returnvalue[] = ElggMenuItem::factory(array(
-					"name" => "quicklinks_remove",
-					"text" => elgg_view_icon("star-hover"),
-					"href" => "action/quicklinks/toggle?guid=" . $entity->getGUID(),
-					"title" => elgg_echo("quicklinks:menu:entity:title"),
-					"is_action" => true,
-					"item_class" => $linked ? "" : "hidden"
-				));
-			}
-			
-			// remove menu items from our own subtype
-			// @todo support edit
-			if (elgg_instanceof($entity, "object", QUICKLINKS_SUBTYPE)) {
-				$allowed_items = array("delete");
-				
-				foreach ($returnvalue as $index => $menu_item) {
-					if (!in_array($menu_item->getName(), $allowed_items)) {
-						unset($returnvalue[$index]);
-					}
-				}
+	if (!in_array($entity->getSubtype(), $black_listed_entity_subtypes) && !empty($registered_entity_types) && is_array($registered_entity_types) && in_array($entity->getSubtype(), $registered_entity_types)) {
+		$linked = quicklinks_check_relationship($entity->getGUID());
+		
+		$returnvalue[] = ElggMenuItem::factory(array(
+			"name" => "quicklinks",
+			"text" => elgg_view_icon("star-empty"),
+			"href" => "action/quicklinks/toggle?guid=" . $entity->getGUID(),
+			"title" => elgg_echo("quicklinks:menu:entity:title"),
+			"is_action" => true,
+			"item_class" => $linked ? "hidden" : ""
+		));
+		$returnvalue[] = ElggMenuItem::factory(array(
+			"name" => "quicklinks_remove",
+			"text" => elgg_view_icon("star-hover"),
+			"href" => "action/quicklinks/toggle?guid=" . $entity->getGUID(),
+			"title" => elgg_echo("quicklinks:menu:entity:title"),
+			"is_action" => true,
+			"item_class" => $linked ? "" : "hidden"
+		));
+	}
+	
+	// remove menu items from our own subtype
+	// @todo support edit
+	if (elgg_instanceof($entity, "object", QUICKLINKS_SUBTYPE)) {
+		$allowed_items = array("delete");
+		
+		foreach ($returnvalue as $index => $menu_item) {
+			if (!in_array($menu_item->getName(), $allowed_items)) {
+				unset($returnvalue[$index]);
 			}
 		}
 	}
