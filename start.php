@@ -33,6 +33,7 @@ function quicklinks_init() {
 	elgg_register_plugin_hook_handler("register", "menu:entity", "quicklinks_register_entity_menu_hook");
 	elgg_register_plugin_hook_handler("prepare", "menu:quicklinks", "quicklinks_prepare_quicklinks_menu_hook");
 	elgg_register_plugin_hook_handler("entity:url", "object", "quicklinks_url_handler");
+	elgg_register_plugin_hook_handler("permissions_check:annotate", "object", "quicklinks_permissions_check_annotate_hook");
 	
 	// register actions
 	elgg_register_action("quicklinks/toggle", dirname(__FILE__) . "/actions/toggle.php");

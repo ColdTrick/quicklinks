@@ -128,3 +128,32 @@ function quicklinks_url_handler($hook, $type, $returnvalue, $params) {
 	
 	return $returnvalue;
 }
+
+/**
+ * QuickLinks are not likeable
+ *
+ * @param string $hook        the name of the hook
+ * @param string $type        the type of the hook
+ * @param bool   $returnvalue current return value
+ * @param array  $params      supplied params
+ *
+ * @return bool
+ */
+function quicklinks_permissions_check_annotate_hook($hook, $type, $returnvalue, $params) {
+	
+	if (empty($params) || !is_array($params)) {
+		return $returnvalue;
+	}
+	
+	$entity = elgg_extract("entity", $params);
+	if (empty($entity) || !elgg_instanceof($entity, "object", QUICKLINKS_SUBTYPE)) {
+		return $returnvalue;
+	}
+	
+	$annotation_name = elgg_extract("annotation_name", $params);
+	if ($annotation_name !== "likes") {
+		return $returnvalue;
+	}
+	
+	return false;
+}
