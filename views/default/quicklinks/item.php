@@ -1,5 +1,9 @@
 <?php
-$entity = $vars["entity"];
+
+$entity = elgg_extract("entity", $vars);
+if (empty($entity)) {
+	return;
+}
 
 $delete_options = array(
 	"text" => elgg_view_icon("delete"),
@@ -16,12 +20,18 @@ $move_options = array(
 	"href" => "#",
 );
 
-$content = "<div class='elgg-discoverable float-alt hidden'>";
+$text = "";
+if ($entity->title) {
+	$text = $entity->title;
+} elseif ($entity->name) {
+	$text = $entity->name;
+}
 
+$content = "<div class='elgg-discoverable float-alt hidden'>";
 $content .= elgg_view("output/url", $move_options);
 $content .= elgg_view("output/url", $delete_options);
 $content .= "</div>";
 
-$content .= elgg_view("output/url", array("text" => $entity->title, "href" => $entity->getURL()));
+$content .= elgg_view("output/url", array("text" => $text, "href" => $entity->getURL()));
 
 echo $content;

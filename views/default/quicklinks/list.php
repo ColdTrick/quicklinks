@@ -20,6 +20,13 @@ if (!in_array(QUICKLINKS_SUBTYPE, $type_subtypes["object"])) {
 	$type_subtypes["object"][] = QUICKLINKS_SUBTYPE;
 }
 
+// loop though to prevent groups/users from being found because of a bug in Elgg
+foreach ($type_subtypes as $type => $subtypes) {
+	if (empty($subtypes)) {
+		$type_subtypes[$type] = false;
+	}
+}
+
 $options = array(
 	"type_subtype_pairs" => $type_subtypes,
 	"limit" => false,
