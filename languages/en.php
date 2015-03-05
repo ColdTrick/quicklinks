@@ -1,6 +1,6 @@
 <?php
 
-return array(
+$english = array(
 	'quicklinks' => "QuickLinks",
 	'quicklinks:add' => "Add QuickLink",
 	'quicklinks:move' => "Move",
@@ -27,3 +27,5 @@ return array(
 	'quicklinks:action:delete:success' => "Your QuickLink was deleted",
 	'' => "",
 );
+
+add_translation("en", $english);

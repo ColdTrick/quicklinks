@@ -5,6 +5,7 @@
 ?>
 #quicklinks-add-lightbox-wrapper {
 	width: 500px;
+	overflow: hidden;
 }
 
 .elgg-menu-quicklinks .elgg-discoverable {
@@ -18,4 +19,9 @@
 
 .elgg-widget-instance-quicklinks:hover .elgg-menu-quicklinks > li.hidden {
 	display: block;
+}
+
+.elgg-menu-item-quicklinks.hidden,
+.elgg-menu-item-quicklinks-remove.hidden {
+	display: none;
 }

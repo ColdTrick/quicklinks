@@ -46,7 +46,7 @@ function quicklinks_register_entity_menu_hook($hook, $type, $returnvalue, $param
 		));
 		$returnvalue[] = ElggMenuItem::factory(array(
 			"name" => "quicklinks_remove",
-			"text" => elgg_view_icon("star-hover"),
+			"text" => elgg_view_icon("star-alt"),
 			"href" => "action/quicklinks/toggle?guid=" . $entity->getGUID(),
 			"title" => elgg_echo("quicklinks:menu:entity:title"),
 			"is_action" => true,

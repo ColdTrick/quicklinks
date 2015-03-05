@@ -8,12 +8,12 @@
 	<website>http://www.coldtrick.com/</website>
 	<repository>https://github.com/ColdTrick/quicklinks</repository>
 	<bugtracker>https://github.com/ColdTrick/quicklinks/issues</bugtracker>
-	<copyright>(C) ColdTrick IT Solutions 2014</copyright>
+	<copyright>(C) ColdTrick IT Solutions 2014 - 2015</copyright>
 	<license>GNU General Public License version 2</license>
  	
  	<requires>
 		<type>elgg_release</type>
-		<version>1.9</version>
+		<version>1.8</version>
 	</requires>
 	
 	<category>ColdTrick</category>

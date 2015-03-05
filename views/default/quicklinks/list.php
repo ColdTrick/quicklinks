@@ -77,8 +77,8 @@ if (elgg_get_context() == "widgets") {
 }
 echo "<div class='" . $class . "'>";
 echo elgg_view("output/url", array(
-		"text" => elgg_echo("quicklinks:add"),
-		"href" => "quicklinks/add/" . elgg_get_logged_in_user_entity()->guid,
-		"class" => "elgg-lightbox"
+	"text" => elgg_echo("quicklinks:add"),
+	"href" => "quicklinks/add/" . elgg_get_logged_in_user_guid(),
+	"class" => "elgg-lightbox"
 ));
 echo "</div>";
