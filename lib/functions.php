@@ -57,3 +57,20 @@ function quicklinks_check_relationship($entity_guid, $user_guid = 0) {
 function quicklinks_row_to_guid($row) {
 	return (int) $row->guid;
 }
+
+/**
+ * Configure the correct URL for our own custom subtype
+ *
+ * @param ElggEntity $entity the entity to get the url for
+ *
+ * @return string
+ */
+function quicklinks_url_handler($entity) {
+	$result = "";
+	
+	if (!empty($entity) && elgg_instanceof($entity, "object", QUICKLINKS_SUBTYPE)) {
+		$result = $entity->description;
+	}
+
+	return $result;
+}

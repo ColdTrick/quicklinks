@@ -26,13 +26,14 @@ function quicklinks_init() {
 	// register page handler for nice urls
 	elgg_register_page_handler("quicklinks", "quicklink_page_handler");
 	
+	elgg_register_entity_url_handler("object", QUICKLINKS_SUBTYPE, "quicklinks_url_handler");
+	
 	// register widget
 	elgg_register_widget_type("quicklinks", elgg_echo("quicklinks:widget:title"), elgg_echo("quicklinks:widget:description"), "index,dashboard");
 	
 	// register plugin hooks
 	elgg_register_plugin_hook_handler("register", "menu:entity", "quicklinks_register_entity_menu_hook");
 	elgg_register_plugin_hook_handler("prepare", "menu:quicklinks", "quicklinks_prepare_quicklinks_menu_hook");
-	elgg_register_plugin_hook_handler("entity:url", "object", "quicklinks_url_handler");
 	elgg_register_plugin_hook_handler("permissions_check:annotate", "object", "quicklinks_permissions_check_annotate_hook");
 	
 	// register actions

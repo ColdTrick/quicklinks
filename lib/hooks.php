@@ -107,29 +107,6 @@ function quicklinks_prepare_quicklinks_menu_hook($hook, $type, $returnvalue, $pa
 }
 
 /**
- * Configure the correct URL for our own custom subtype
- *
- * @param string $hook        'entity:url'
- * @param string $type        'object'
- * @param string $returnvalue the current link (if any)
- * @param array  $params      provided params
- *
- * @return string
- */
-function quicklinks_url_handler($hook, $type, $returnvalue, $params) {
-	
-	if (empty($returnvalue) && !empty($params) && is_array($params)) {
-		$entity = elgg_extract("entity", $params);
-		
-		if (!empty($entity) && elgg_instanceof($entity, "object", QUICKLINKS_SUBTYPE)) {
-			$returnvalue = $entity->description;
-		}
-	}
-	
-	return $returnvalue;
-}
-
-/**
  * QuickLinks are not likeable
  *
  * @param string $hook        the name of the hook
