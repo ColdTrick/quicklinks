@@ -12,7 +12,7 @@ if ($num_display < 1) {
 
 echo "<div>";
 echo "<label>" . elgg_echo("widget:numbertodisplay") . "</label>";
-echo elgg_view("input/select", array(
+echo elgg_view("input/dropdown", array(
 	"name" => "params[num_display]", 
 	"value" => $num_display, 
 	"options" => range(1,10), 
