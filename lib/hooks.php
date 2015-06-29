@@ -91,16 +91,7 @@ function quicklinks_prepare_quicklinks_menu_hook($hook, $type, $returnvalue, $pa
 		
 	$display_limit = (int) elgg_extract("display_limit", $params, 0);
 	if ($display_limit > 0 && elgg_in_context("widgets")) {
-		
-		if (!isset($returnvalue["default"])) {
-			return $returnvalue;
-		}
-		
-		foreach ($returnvalue["default"] as $index => $item) {
-			if ($index >= $display_limit) {
-				$item->addItemClass("hidden");
-			}
-		}
+		$returnvalue["default"] = array_slice($returnvalue["default"], 0, $display_limit);
 	}
 	
 	return $returnvalue;
