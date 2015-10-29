@@ -15,7 +15,11 @@ elgg.quicklinks.init = function() {
 		containment: "parent",
 		handle: ".elgg-icon-cursor-drag-arrow",
 		update: function() {
-			elgg.action('quicklinks/reorder?' + $(this).sortable('serialize', {attribute: "class", key: "guids[]", expression: "elgg-menu-item-(.+) clearfix elgg-discover elgg-border-plain pas mbs"}));
+			elgg.action('quicklinks/reorder?' + $(this).sortable('serialize', {
+				attribute: "class",
+				key: "guids[]",
+				expression: "elgg-menu-item-(.+) clearfix elgg-discover elgg-border-plain pas mbs"
+			}));
 		}
 	});
 };

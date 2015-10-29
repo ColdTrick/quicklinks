@@ -3,7 +3,7 @@
  * show a number of quicklinks in a widget
  */
 
-$widget = elgg_extract("entity", $vars);
+$widget = elgg_extract('entity', $vars);
 
 $num_display = (int) $widget->num_display;
 if ($num_display < 1) {
@@ -11,12 +11,16 @@ if ($num_display < 1) {
 }
 
 $owner = $widget->getOwnerEntity();
-if (!elgg_instanceof($owner, "user")) {
+if (!($owner instanceof ElggUser)) {
 	$owner = elgg_get_logged_in_user_entity();
 }
 
-if (!empty($owner)) {
-	echo elgg_view("quicklinks/list", array("owner" => $owner, "limit" => $num_display));
-} else {
-	echo elgg_view("output/longtext", array("value" => elgg_echo("loggedinrequired")));
+if (empty($owner)) {
+	echo elgg_view('output/longtext', ['value' => elgg_echo('loggedinrequired')]);
+	return;
 }
+
+echo elgg_view('quicklinks/list', [
+	'owner' => $owner,
+	'limit' => $num_display
+]);
