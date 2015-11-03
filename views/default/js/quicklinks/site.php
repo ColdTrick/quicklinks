@@ -7,9 +7,7 @@
 //<script>
 elgg.provide("elgg.quicklinks");
 
-elgg.quicklinks.init = function() {
-
-	elgg.ui.registerTogglableMenuItems("quicklinks", "quicklinks-remove");
+elgg.quicklinks.sortable_init = function() {
 	
 	$(".elgg-menu-quicklinks").sortable({
 		containment: "parent",
@@ -22,6 +20,13 @@ elgg.quicklinks.init = function() {
 			}));
 		}
 	});
+};
+
+elgg.quicklinks.init = function() {
+	
+	elgg.ui.registerTogglableMenuItems("quicklinks", "quicklinks-remove");
+	
+	elgg.quicklinks.sortable_init();
 };
 
 elgg.register_hook_handler("init", "system", elgg.quicklinks.init);
