@@ -34,9 +34,7 @@ class EntityMenu {
 			return;
 		}
 		
-		// add quicklink toggle to registered entity types
-		$registered_entity_types = get_registered_entity_types($entity->getType());
-		
+		// check blacklisted subtypes
 		$black_listed_entity_subtypes = [
 			'discussion_reply',
 			'comment',
@@ -48,26 +46,13 @@ class EntityMenu {
 			return;
 		}
 		
-		if (empty($registered_entity_types) || !is_array($registered_entity_types)) {
+		// add quicklink toggle to registered entity types
+		if (!is_registered_entity_type($entity->getType(), $entity->getSubtype())) {
 			// no registered entity types found
 			return;
 		}
 		
-		if (!in_array($entity->getSubtype(), $registered_entity_types)) {
-			// not a valid entity type
-			return;
-		}
-		
 		$items = quicklinks_get_toggle_menu_items(['entity' => $entity]);
-		if (empty($items)) {
-			return;
-		}
-		
-		foreach ($items as $item) {
-// 			$returnvalue[] = $item;
-		}
-		
-		$items = quicklinks_get_toggle_menu_items(['title' => $entity->title, 'url' => $entity->getURL()]);
 		if (empty($items)) {
 			return;
 		}
