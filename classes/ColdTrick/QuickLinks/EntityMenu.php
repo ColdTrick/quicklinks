@@ -34,20 +34,8 @@ class EntityMenu {
 			return;
 		}
 		
-		// check blacklisted subtypes
-		$black_listed_entity_subtypes = [
-			'discussion_reply',
-			'comment',
-			'thewire',
-		];
-		
-		if (in_array($entity->getSubtype(), $black_listed_entity_subtypes)) {
-			// black listed
-			return;
-		}
-		
 		// add quicklink toggle to registered entity types
-		if (!is_registered_entity_type($entity->getType(), $entity->getSubtype())) {
+		if (!quicklinks_can_link($entity->getType(), $entity->getSubtype())) {
 			// no registered entity types found
 			return;
 		}
