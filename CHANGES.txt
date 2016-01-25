@@ -1,6 +1,26 @@
-Version History
+Version history
 ===============
 
-1.0:
+1.0 (2016-01-25):
 
-- first release
+- added: composer support
+- added: option to add menu items for url-based quicklinks (not entities) chore: plugin code cleanup
+- added: README
+- added: caching to increase performance
+- added: thewire to blocked subtypes
+- added: blacklisted some entity subtypes to not be able to quicklink them
+- added: listing layout
+- changed: js sortable registration to own function for better reuse
+- changed: limited usage to widget only
+- changed: quicklinks supported type/subtype now has a plugin hook
+- changed: title is now also required for a quick link
+- changed icon of add quicklink
+- fixed: some php warnings
+- fixed: using non existing translation key
+- fixed: correctly toggle entity_menu items
+- fixed: groups not showing up in the listing
+- fixed: quicklinks not added to all registered entity types
+- fixed: show correct text if no quicklinks are found
+- fixed: working display limit on menu in widgets
+- fixed: quicklinks are not likeable
+- removed: icon on add quicklink
