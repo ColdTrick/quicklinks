@@ -8,7 +8,7 @@ if (!($entity instanceof ElggEntity)) {
 $delete_options = [
 	'text' => elgg_view_icon('delete'),
 	'href' => "action/quicklinks/toggle?guid={$entity->getGUID()}",
-	'is_action' => true
+	'is_action' => true,
 ];
 if ($entity instanceof QuickLink) {
 	$delete_options['href'] = "action/quicklinks/delete?guid={$entity->getGUID()}";
@@ -34,7 +34,7 @@ $content .= '</div>';
 
 $content .= elgg_view('output/url', [
 	'text' => $text,
-	'href' => $entity->getURL()
+	'href' => $entity->getURL(),
 ]);
 
 echo $content;

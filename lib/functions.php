@@ -38,7 +38,7 @@ function quicklinks_check_relationship($entity_guid, $user_guid = 0) {
 			'relationship' => QUICKLINKS_RELATIONSHIP,
 			'relationship_guid' => $user_guid,
 			'limit' => false,
-			'callback' => 'quicklinks_row_to_guid'
+			'callback' => 'quicklinks_row_to_guid',
 		];
 		
 		$cache[$user_guid] = elgg_get_entities_from_relationship($options);
@@ -173,14 +173,14 @@ function quicklinks_get_toggle_menu_items($params = []) {
 		'url' => $url,
 	]);
 	
-	$items[] = \ElggMenuItem::factory(array(
+	$items[] = \ElggMenuItem::factory([
 		'name' => 'quicklinks_remove',
 		'text' => elgg_view_icon('star-hover'),
 		'href' => $remove_href,
 		'title' => elgg_echo('quicklinks:menu:entity:title'),
 		'is_action' => true,
 		'item_class' => $linked ? '' : 'hidden',
-	));
+	]);
 	
 	return $items;
 }

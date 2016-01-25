@@ -12,7 +12,7 @@ if (!($container instanceof ElggEntity)) {
 }
 
 echo '<div>';
-echo '<label for="quicklinks-add-title">' . elgg_echo('title') . '*</label>';
+echo elgg_format_element('label', ['for' => 'quicklinks-add-title'], elgg_echo('title') . '*');
 echo elgg_view('input/text', [
 	'name' => 'title',
 	'id' => 'quicklinks-add-title',
@@ -21,7 +21,7 @@ echo elgg_view('input/text', [
 echo '</div>';
 
 echo '<div>';
-echo '<label for="quicklinks-add-url">' . elgg_echo('quicklinks:edit:url') . '*</label>';
+echo elgg_format_element('label', ['for' => 'quicklinks-add-url'], elgg_echo('quicklinks:edit:url') . '*');
 echo elgg_view('input/url', [
 	'name' => 'url',
 	'id' => 'quicklinks-add-url',
@@ -29,9 +29,7 @@ echo elgg_view('input/url', [
 ]);
 echo '</div>';
 
-echo '<div class="elgg-subtext float-alt">';
-echo elgg_echo('quicklinks:edit:required');
-echo '</div>';
+echo elgg_format_element('div', ['class' => 'elgg-subtext float-alt'], elgg_echo('quicklinks:edit:required'));
 
 echo '<div class="elgg-foot">';
 echo elgg_view('input/hidden', [

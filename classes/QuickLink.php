@@ -22,6 +22,5 @@ class QuickLink extends ElggObject {
 	public function getURL() {
 		return elgg_normalize_url($this->description);
 	}
-	
-	
+
 }

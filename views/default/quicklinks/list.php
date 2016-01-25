@@ -9,12 +9,12 @@ if (!($owner instanceof ElggUser)) {
 
 $type_subtypes = get_registered_entity_types();
 if (!is_array($type_subtypes)) {
-	$type_subtypes = array();
+	$type_subtypes = [];
 }
 
 // add quicklinks subtype
 if (!isset($type_subtypes['object'])) {
-	$type_subtypes['object'] = array();
+	$type_subtypes['object'] = [];
 }
 if (!in_array(QuickLink::SUBTYPE, $type_subtypes['object'])) {
 	$type_subtypes['object'][] = QuickLink::SUBTYPE;
@@ -27,13 +27,13 @@ foreach ($type_subtypes as $type => $subtypes) {
 	}
 }
 
-$options = array(
+$options = [
 	'type_subtype_pairs' => $type_subtypes,
 	'limit' => false,
 	'relationship' => QUICKLINKS_RELATIONSHIP,
 	'relationship_guid' => $owner->getGUID(),
-	'order_by' => 'r.time_created DESC'
-);
+	'order_by' => 'r.time_created DESC',
+];
 // @todo fix default time_created by adding an extra field in the select because of relationship created instead of time_created of related entity
 elgg_push_context('quicklinks');
 $configured_priorities = $owner->getPrivateSetting('quicklinks_order');
@@ -56,13 +56,13 @@ foreach ($entities as $index => $entity) {
 		'text' => elgg_view('quicklinks/item', ['entity' => $entity]),
 		'href' => false,
 		'priority' => $priority,
-		'item_class' => 'clearfix elgg-discover elgg-border-plain pas mbs'
+		'item_class' => 'clearfix elgg-discover elgg-border-plain pas mbs',
 	]));
 }
 
 $content = elgg_view_menu('quicklinks', [
 	'sort_by' => 'priority',
-	'display_limit' => $limit
+	'display_limit' => $limit,
 ]);
 if (empty($content) && elgg_in_context('widgets')) {
 	$content = elgg_echo('notfound');
@@ -75,15 +75,18 @@ if (elgg_is_logged_in()) {
 	elgg_load_js('lightbox');
 	elgg_load_css('lightbox');
 	
-	$class = 'alliander-theme-quicklinks-item';
+	$class = [
+		'alliander-theme-quicklinks-item',
+	];
 	if (elgg_get_context() == 'widgets') {
-		$class = 'elgg-widget-more';
+		$class[] = 'elgg-widget-more';
 	}
-	echo "<div class='{$class}'>";
-	echo elgg_view('output/url', [
+	
+	$url = elgg_view('output/url', [
 		'text' => elgg_echo('quicklinks:add'),
 		'href' => 'quicklinks/add/' . elgg_get_logged_in_user_guid(),
 		'class' => 'elgg-lightbox',
 	]);
-	echo '</div>';
+	
+	echo elgg_format_element('div', ['class' => $class], $url);
 }
