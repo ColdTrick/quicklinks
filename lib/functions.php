@@ -197,6 +197,32 @@ function quicklinks_get_toggle_menu_items($params = []) {
  */
 function quicklinks_can_link($type, $subtype = null) {
 	
+	$supported_types = quicklinks_get_supported_types();
+	if (empty($supported_types) || !is_array($supported_types)) {
+		return false;
+	}
+	
+	// is type registered
+	$type = strtolower($type);
+	if (!isset($supported_types[$type])) {
+		return false;
+	}
+	
+	// check (optional) subtype
+	if (!empty($subtype) && !in_array($subtype, $supported_types[$type])) {
+		return false;
+	}
+	
+	return true;
+}
+
+/**
+ * Get the list of supported type/subtypes for quicklinks
+ *
+ * @return array
+ */
+function quicklinks_get_supported_types() {
+	
 	// default to registered entity types
 	$supported_types = get_registered_entity_types();
 	
@@ -228,22 +254,5 @@ function quicklinks_can_link($type, $subtype = null) {
 	}
 	
 	// allow others to change the list
-	$supported_types = elgg_trigger_plugin_hook('type_subtypes', 'quicklinks', $supported_types, $supported_types);
-	
-	if (empty($supported_types) || !is_array($supported_types)) {
-		return false;
-	}
-	
-	// is type registered
-	$type = strtolower($type);
-	if (!isset($supported_types[$type])) {
-		return false;
-	}
-	
-	// check (optional) subtype
-	if (!empty($subtype) && !in_array($subtype, $supported_types[$type])) {
-		return false;
-	}
-	
-	return true;
+	return elgg_trigger_plugin_hook('type_subtypes', 'quicklinks', $supported_types, $supported_types);
 }

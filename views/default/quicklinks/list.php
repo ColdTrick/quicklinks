@@ -7,7 +7,7 @@ if (!($owner instanceof ElggUser)) {
 	return;
 }
 
-$type_subtypes = get_registered_entity_types();
+$type_subtypes = quicklinks_get_supported_types();
 if (!is_array($type_subtypes)) {
 	$type_subtypes = [];
 }

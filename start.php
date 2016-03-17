@@ -35,6 +35,7 @@ function quicklinks_init() {
 	elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\QuickLinks\EntityMenu::registerQuickLinkCleanup');
 	elgg_register_plugin_hook_handler('prepare', 'menu:quicklinks', '\ColdTrick\QuickLinks\QuickLinksMenu::prepare');
 	elgg_register_plugin_hook_handler('permissions_check:annotate', 'object', '\ColdTrick\QuickLinks\Permissions::annotateLike');
+	elgg_register_plugin_hook_handler('type_subtypes', 'quicklinks', '\ColdTrick\QuickLinks\SupportedTypes::fixPages', 99999);
 	
 	// register actions
 	elgg_register_action('quicklinks/toggle', dirname(__FILE__) . '/actions/toggle.php');
