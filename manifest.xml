@@ -3,7 +3,7 @@
 	<name>QuickLinks</name>
 	<author>ColdTrick IT Solutions</author>
 	<id>quicklinks</id>
-	<version>1.0</version>
+	<version>1.0.1</version>
 	<description>Quickly link a page for faster navigation</description>
 	<website>http://www.coldtrick.com/</website>
 	<repository>https://github.com/ColdTrick/quicklinks</repository>
