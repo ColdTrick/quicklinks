@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v2.0
- * On 2014-07-17 09:57
+ * This file was created by Translation Editor v5.2
+ * On 2017-02-13 12:58
  */
 
-$language = array (
+return array (
+  'item:object:quicklink' => 'QuickLink',
   'quicklinks:owner:title' => '%s\'s links',
   'quicklinks:edit:url' => 'Website URL',
   'quicklinks' => 'Mijn links',
@@ -20,4 +21,3 @@ $language = array (
   'quicklinks:action:delete:error' => 'Er is een fout opgetreden tijdens het verwijderen van de link',
   'quicklinks:action:delete:success' => 'Link verwijderd',
 );
-add_translation("nl", $language);
