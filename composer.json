@@ -3,7 +3,7 @@
 	"description": "Quickly link a page for faster navigation",
 	"type": "elgg-plugin",
 	"keywords": ["elgg", "plugin", "bookmarks"],
-	"license": "GPL-2.0",
+	"license": "GPL-2.0-only",
 	"support": {
 		"source": "https://github.com/ColdTrick/quicklinks",
 		"issues": "https://github.com/ColdTrick/quicklinks/issues"
@@ -14,5 +14,8 @@
 	"require-dev": {
 		"coldtrick/sniffs": "dev-master",
 		"coldtrick/releases": "dev-master"
+	},
+	"conflict": {
+		"elgg/elgg": "<3.0"
 	}
 }
