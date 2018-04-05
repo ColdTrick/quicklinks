@@ -23,6 +23,7 @@ if (empty($owner)) {
 $menu = elgg_view_menu('quicklinks', [
 	'owner' => $owner,
 	'limit' => $num_display,
+	'include_add' => true,
 ]);
 
 if (empty($menu)) {

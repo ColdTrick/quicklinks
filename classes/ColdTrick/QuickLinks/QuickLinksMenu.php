@@ -60,6 +60,10 @@ class QuickLinksMenu {
 			]);
 		}
 		
+		if (!$hook->getParam('include_add', false)) {
+			return $result;
+		}
+		
 		if ($owner->guid == elgg_get_logged_in_user_guid()) {
 			$result[] = \ElggMenuItem::factory([
 				'name' => 'add',
