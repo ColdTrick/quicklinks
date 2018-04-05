@@ -7,34 +7,33 @@
  */
 
 $container = elgg_extract('container', $vars);
-if (!($container instanceof ElggEntity)) {
+if (!$container instanceof ElggEntity) {
 	return;
 }
 
-echo '<div>';
-echo elgg_format_element('label', ['for' => 'quicklinks-add-title'], elgg_echo('title') . '*');
-echo elgg_view('input/text', [
-	'name' => 'title',
-	'id' => 'quicklinks-add-title',
-	'required' => true,
-]);
-echo '</div>';
-
-echo '<div>';
-echo elgg_format_element('label', ['for' => 'quicklinks-add-url'], elgg_echo('quicklinks:edit:url') . '*');
-echo elgg_view('input/url', [
-	'name' => 'url',
-	'id' => 'quicklinks-add-url',
-	'required' => true,
-]);
-echo '</div>';
-
-echo elgg_format_element('div', ['class' => 'elgg-subtext float-alt'], elgg_echo('quicklinks:edit:required'));
-
-echo '<div class="elgg-foot">';
-echo elgg_view('input/hidden', [
+echo elgg_view_field([
+	'#type' => 'hidden',
 	'name' => 'container_guid',
-	'value' => $container->getGUID(),
+	'value' => $container->guid,
 ]);
-echo elgg_view('input/submit', ['value' => elgg_echo('save')]);
-echo '</div>';
+
+echo elgg_view_field([
+	'#type' => 'text',
+	'#label' => elgg_echo('title'),
+	'name' => 'title',
+	'required' => true,
+]);
+
+echo elgg_view_field([
+	'#type' => 'url',
+	'#label' => elgg_echo('quicklinks:edit:url'),
+	'name' => 'url',
+	'required' => true,
+]);
+
+$footer = elgg_view_field([
+	'#type' => 'submit',
+	'value' => elgg_echo('save'),
+]);
+
+elgg_set_form_footer($footer);

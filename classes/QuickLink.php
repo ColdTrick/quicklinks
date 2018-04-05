@@ -3,9 +3,11 @@
 class QuickLink extends ElggObject {
 	
 	const SUBTYPE = 'quicklink';
+
+	const RELATIONSHIP = 'quicklinks';
 	
 	/**
-	 * (non-PHPdoc)
+	 * {@inheritDoc}
 	 * @see ElggObject::initializeAttributes()
 	 */
 	protected function initializeAttributes() {
@@ -16,11 +18,19 @@ class QuickLink extends ElggObject {
 	}
 	
 	/**
-	 * (non-PHPdoc)
+	 * {@inheritDoc}
 	 * @see ElggEntity::getURL()
 	 */
 	public function getURL() {
 		return elgg_normalize_url($this->description);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * @see ElggObject::canComment()
+	 */
+	public function canComment($user_guid = 0, $default = null) {
+		return false;
 	}
 
 }

@@ -10,8 +10,8 @@ return array(
 	'quicklinks:menu:entity:title' => "Basculer vers le lien rapide",
 	
 	// widgets
-	'quicklinks:widget:title' => "Liens rapides",
-	'quicklinks:widget:description' => "Affiche une liste des liens rapides que vous avez fait",
+	'widgets:quicklinks:name' => "Liens rapides",
+	'widgets:quicklinks:description' => "Affiche une liste des liens rapides que vous avez fait",
 	
 	// views
 	'quicklinks:owner:title' => "Liens rapides de %s",

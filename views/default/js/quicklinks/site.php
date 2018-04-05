@@ -23,9 +23,7 @@ elgg.quicklinks.sortable_init = function() {
 };
 
 elgg.quicklinks.init = function() {
-	
-	elgg.ui.registerTogglableMenuItems('quicklinks', 'quicklinks-remove');
-	
+		
 	elgg.quicklinks.sortable_init();
 };
 

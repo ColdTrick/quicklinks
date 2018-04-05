@@ -20,7 +20,14 @@ if (empty($owner)) {
 	return;
 }
 
-echo elgg_view('quicklinks/list', [
+$menu = elgg_view_menu('quicklinks', [
 	'owner' => $owner,
-	'limit' => $num_display
+	'limit' => $num_display,
 ]);
+
+if (empty($menu)) {
+	echo elgg_echo('notfound');
+	return;
+}
+
+echo $menu;

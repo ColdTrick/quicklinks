@@ -22,7 +22,7 @@ $title_text = elgg_echo('quicklinks:add:title');
 $content = elgg_view_form('quicklinks/edit', [], ['container' => $page_owner]);
 
 if (elgg_is_xhr()) {
-	echo elgg_format_element('div', ['id' => 'quicklinks-add-lightbox-wrapper'], elgg_view_title($title_text) . $content);
+	echo elgg_view_module('inline', $title_text, $content);
 } else {
 	// build page
 	$page_data = elgg_view_layout('content', [

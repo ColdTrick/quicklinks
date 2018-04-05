@@ -33,29 +33,17 @@ function quicklinks_check_relationship($entity_guid, $user_guid = 0) {
 	}
 	
 	if (!isset($cache[$user_guid])) {
-		
-		$options = [
-			'relationship' => QUICKLINKS_RELATIONSHIP,
+		$cache[$user_guid] = elgg_get_entities([
+			'relationship' => \QuickLink::RELATIONSHIP,
 			'relationship_guid' => $user_guid,
 			'limit' => false,
-			'callback' => 'quicklinks_row_to_guid',
-		];
-		
-		$cache[$user_guid] = elgg_get_entities_from_relationship($options);
+			'callback' => function($row) {
+				return (int) $row->guid;
+			},
+		]);
 	}
 	
 	return in_array($entity_guid, $cache[$user_guid]);
-}
-
-/**
- * Return the guid of the row
- *
- * @param stdClass $row the MySQL row
- *
- * @return int
- */
-function quicklinks_row_to_guid($row) {
-	return (int) $row->guid;
 }
 
 /**
@@ -99,121 +87,6 @@ function quicklinks_check_url($url, $return_entity = false) {
 	}
 	
 	return $entities[0];
-}
-
-/**
- * Get menu items to toggle quicklink
- *
- * @param array $params supplied params, supports
- *  - entity => an ElggEntity to toggle
- *  - title => to create for a random name (url is required)
- *  - url => to create for a random url (title is suggested)
- *
- * @return false|ElggMenuItem
- */
-function quicklinks_get_toggle_menu_items($params = []) {
-	
-	if (empty($params) || !is_array($params)) {
-		return false;
-	}
-	
-	$items = [];
-	
-	$entity = elgg_extract('entity', $params);
-	if (($entity instanceof ElggEntity) && $entity->getGUID()) {
-		// do it the easy way
-		// is linked?
-		$linked = quicklinks_check_relationship($entity->getGUID());
-		
-		// build menu items
-		$items[] = \ElggMenuItem::factory([
-			'name' => 'quicklinks',
-			'text' => elgg_view_icon('star-empty'),
-			'href' => "action/quicklinks/toggle?guid={$entity->getGUID()}",
-			'title' => elgg_echo('quicklinks:menu:entity:title'),
-			'is_action' => true,
-			'item_class' => $linked ? 'hidden' : '',
-		]);
-		$items[] = \ElggMenuItem::factory([
-			'name' => 'quicklinks_remove',
-			'text' => elgg_view_icon('star-hover'),
-			'href' => "action/quicklinks/toggle?guid={$entity->getGUID()}",
-			'title' => elgg_echo('quicklinks:menu:entity:title'),
-			'is_action' => true,
-			'item_class' => $linked ? '' : 'hidden',
-		]);
-		
-		return $items;
-	}
-	
-	$url = elgg_extract('url', $params);
-	if (empty($url)) {
-		return false;
-	}
-	
-	$linked = quicklinks_check_url($url);
-	
-	// not linked
-	$add_href = elgg_http_add_url_query_elements('action/quicklinks/edit', [
-		'title' => elgg_extract('title', $params),
-		'url' => $url,
-	]);
-	
-	$items[] = \ElggMenuItem::factory([
-		'name' => 'quicklinks',
-		'text' => elgg_view_icon('star-empty'),
-		'href' => $add_href,
-		'title' => elgg_echo('quicklinks:menu:entity:title'),
-		'is_action' => true,
-		'item_class' => $linked ? 'hidden' : '',
-	]);
-	
-	// linked
-	$remove_href = elgg_http_add_url_query_elements('action/quicklinks/delete', [
-		'url' => $url,
-	]);
-	
-	$items[] = \ElggMenuItem::factory([
-		'name' => 'quicklinks_remove',
-		'text' => elgg_view_icon('star-hover'),
-		'href' => $remove_href,
-		'title' => elgg_echo('quicklinks:menu:entity:title'),
-		'is_action' => true,
-		'item_class' => $linked ? '' : 'hidden',
-	]);
-	
-	return $items;
-}
-
-/**
- * Check if a type/subtype can be added to quicklinks
- *
- * @param string $type    the type of the entity
- * @param string $subtype the subtype of the entity
- *
- * @see is_registered_entity_type()
- *
- * @return bool
- */
-function quicklinks_can_link($type, $subtype = null) {
-	
-	$supported_types = quicklinks_get_supported_types();
-	if (empty($supported_types) || !is_array($supported_types)) {
-		return false;
-	}
-	
-	// is type registered
-	$type = strtolower($type);
-	if (!isset($supported_types[$type])) {
-		return false;
-	}
-	
-	// check (optional) subtype
-	if (!empty($subtype) && !in_array($subtype, $supported_types[$type])) {
-		return false;
-	}
-	
-	return true;
 }
 
 /**
