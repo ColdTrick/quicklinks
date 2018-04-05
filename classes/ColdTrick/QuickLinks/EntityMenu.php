@@ -17,8 +17,8 @@ class EntityMenu {
 			return;
 		}
 		
-		$entity = elgg_extract('entity', $params);
-		if (!$entity instanceof \ElggEntity) {
+		$entity = $hook->getEntityParam();
+		if (!$entity) {
 			return;
 		}
 		
