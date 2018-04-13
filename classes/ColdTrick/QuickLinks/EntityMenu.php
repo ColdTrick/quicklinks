@@ -38,6 +38,8 @@ class EntityMenu {
 			return;
 		}
 		
+		$returnvalue = $hook->getValue();
+		
 		foreach ($items as $item) {
 			$returnvalue[] = $item;
 		}
