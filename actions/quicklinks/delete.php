@@ -7,8 +7,7 @@ $guid = (int) get_input('guid');
 $url = get_input('url');
 
 if (empty($guid) && empty($url)) {
-	register_error(elgg_echo('error:missing_data'));
-	forward(REFERER);
+	return elgg_error_response(elgg_echo('error:missing_data'));
 }
 
 $entity = false;
@@ -21,14 +20,11 @@ if (!empty($guid)) {
 }
 
 if (!($entity instanceof QuickLink) || !$entity->canEdit()) {
-	register_error(elgg_echo('quicklinks:action:delete:error'));
-	forward(REFERER);
+	return elgg_error_response(elgg_echo('entity:delete:permission_denied'));
 }
 
-if ($entity->delete()) {
-	system_message(elgg_echo('quicklinks:action:delete:success'));
-} else {
-	register_error(elgg_echo('quicklinks:action:delete:error'));
+if (!$entity->delete()) {
+	return elgg_error_response(elgg_echo('entity:delete:fail', [elgg_echo('item:object:quicklink')]));
 }
 
-forward(REFERER);
+return elgg_ok_response('', elgg_echo('entity:delete:success', [elgg_echo('item:object:quicklink')]));
