@@ -23,7 +23,7 @@ class QuickLinksMenu {
 		
 		$entities = elgg_get_entities([
 			'type_subtype_pairs' => self::getTypeSubtypePairs(),
-			'limit' => $hook->getParam('limit', false),
+			'limit' => false,
 			'relationship' => \QuickLink::RELATIONSHIP,
 			'relationship_guid' => $owner->guid,
 			'order_by' => new OrderByClause('r.time_created', 'DESC'),
@@ -34,6 +34,8 @@ class QuickLinksMenu {
 			$configured_priorities = json_decode($configured_priorities);
 		}
 		
+		$can_edit = $owner->canEdit();
+		
 		foreach ($entities as $entity) {
 			$priority = $entity->time_created;
 			
@@ -41,37 +43,12 @@ class QuickLinksMenu {
 				$priority = array_search($entity->guid, $configured_priorities);
 			}
 			
-// 			$delete_options = [
-// 				'text' => elgg_view_icon('delete'),
-// 				'href' => "action/quicklinks/toggle?guid={$entity->getGUID()}",
-// 				'is_action' => true,
-// 			];
-// 			if ($entity instanceof QuickLink) {
-// 				$delete_options['href'] = "action/quicklinks/delete?guid={$entity->getGUID()}";
-// 			}
-
 			$result[] = \ElggMenuItem::factory([
 				'name' => $entity->guid,
 				'text' => $entity->getDisplayName(),
 				'href' => $entity->getURL(),
-// 				'icon' => 'cursor-drag-arrow',
-				'icon_alt' => 'delete',
+				'icon_alt' => $can_edit ? 'delete' : null,
 				'priority' => $priority,
-			]);
-		}
-		
-		if (!$hook->getParam('include_add', false)) {
-			return $result;
-		}
-		
-		if ($owner->guid == elgg_get_logged_in_user_guid()) {
-			$result[] = \ElggMenuItem::factory([
-				'name' => 'add',
-				'section' => 'more',
-				'icon' => 'plus',
-				'text' => elgg_echo('quicklinks:add'),
-				'href' => elgg_generate_url('add:object:quicklink', ['guid' => elgg_get_logged_in_user_guid()]),
-				'class' => 'elgg-lightbox',
 			]);
 		}
 		
