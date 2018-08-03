@@ -43,12 +43,19 @@ class QuickLinksMenu {
 				$priority = array_search($entity->guid, $configured_priorities);
 			}
 			
+			$delete_action = "quicklinks/toggle?guid={$entity->guid}";
+			
+			if ($entity instanceof QuickLink) {
+				$delete_action = "quicklinks/delete?guid={$entity->guid}";
+			}
+			
 			$result[] = \ElggMenuItem::factory([
 				'name' => $entity->guid,
 				'text' => $entity->getDisplayName(),
 				'href' => $entity->getURL(),
 				'icon_alt' => $can_edit ? 'delete' : null,
 				'priority' => $priority,
+				'data-delete-action' => $delete_action,
 			]);
 		}
 		

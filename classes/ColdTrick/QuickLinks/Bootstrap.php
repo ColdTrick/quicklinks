@@ -10,7 +10,8 @@ class Bootstrap extends DefaultPluginBootstrap {
 	 * {@inheritdoc}
 	 */
 	public function init() {
-					
+		elgg_extend_view('elgg.css', 'quicklinks.css');
+		
 		// register plugin hooks
 		elgg_register_plugin_hook_handler('register', 'menu:site', '\ColdTrick\QuickLinks\SiteMenu::register');
 		elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\QuickLinks\EntityMenu::register');
