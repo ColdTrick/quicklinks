@@ -15,13 +15,14 @@ if (empty($owner)) {
 	return;
 }
 
+elgg_require_js('quicklinks');
+
 $menu = elgg_view_menu('quicklinks', [
 	'owner' => $owner,
 ]);
 
 if (empty($menu)) {
-	echo elgg_echo('notfound');
-	return;
+	$menu = elgg_echo('notfound');
 }
 
 echo $menu;
