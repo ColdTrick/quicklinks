@@ -13,8 +13,10 @@ class Bootstrap extends DefaultPluginBootstrap {
 		elgg_extend_view('elgg.css', 'quicklinks.css');
 		
 		// register plugin hooks
-		elgg_register_plugin_hook_handler('register', 'menu:site', '\ColdTrick\QuickLinks\SiteMenu::register');
-		elgg_register_plugin_hook_handler('register', 'menu:entity', '\ColdTrick\QuickLinks\EntityMenu::register');
-		elgg_register_plugin_hook_handler('register', 'menu:quicklinks', '\ColdTrick\QuickLinks\QuickLinksMenu::register');
+		$hooks = $this->elgg()->hooks;
+		$hooks->registerHandler('export:counters', 'elasticsearch', __NAMESPACE__ . '\Elasticsearch::exportCounter');
+		$hooks->registerHandler('register', 'menu:site', __NAMESPACE__ . '\SiteMenu::register');
+		$hooks->registerHandler('register', 'menu:entity', __NAMESPACE__ . '\EntityMenu::register');
+		$hooks->registerHandler('register', 'menu:quicklinks', __NAMESPACE__ . '\QuickLinksMenu::register');
 	}
 }
