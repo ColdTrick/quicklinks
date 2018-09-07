@@ -55,6 +55,7 @@ class QuickLinksMenu {
 				'href' => $entity->getURL(),
 				'icon_alt' => $can_edit ? 'delete' : null,
 				'priority' => $priority,
+				'deps' => ['quicklinks'],
 				'data-delete-action' => $delete_action,
 			]);
 		}

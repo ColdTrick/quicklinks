@@ -15,8 +15,6 @@ if (empty($owner)) {
 	return;
 }
 
-elgg_require_js('quicklinks');
-
 $menu = elgg_view_menu('quicklinks', [
 	'owner' => $owner,
 ]);
