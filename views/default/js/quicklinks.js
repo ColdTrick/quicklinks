@@ -2,7 +2,7 @@ define(function(require) {
 	var $ = require('jquery');
 	var elgg = require('elgg');
 
-	$('.elgg-menu-site .elgg-menu-item-quicklinks > .elgg-child-menu, .elgg-menu-quicklinks').sortable({
+	$('#quicklinks, .elgg-menu-site .elgg-menu-item-quicklinks > .elgg-child-menu, .elgg-menu-quicklinks').sortable({
 		containment: 'parent',
 		items: 'li:not(.elgg-menu-item-add)',
 		update: function() {
@@ -14,7 +14,7 @@ define(function(require) {
 		}
 	});
 	
-	$(document).on('click', '.elgg-menu-site .elgg-menu-item-quicklinks > .elgg-child-menu .elgg-icon-delete, .elgg-menu-quicklinks .elgg-icon-delete', function(event) {
+	$(document).on('click', '#quicklinks .elgg-icon-delete, .elgg-menu-site .elgg-menu-item-quicklinks > .elgg-child-menu .elgg-icon-delete, .elgg-menu-quicklinks .elgg-icon-delete', function(event) {
 		event.preventDefault();
 		
 		var $menu_item = $(this).closest('li');
