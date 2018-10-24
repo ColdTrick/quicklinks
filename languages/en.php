@@ -1,11 +1,12 @@
 <?php
 
-return array(
+return [
 	'quicklinks' => "QuickLinks",
 	'quicklinks:add' => "Add QuickLink",
 	'quicklinks:remove' => "Remove QuickLink",
 	'quicklinks:move' => "Move",
 	'item:object:quicklink' => 'QuickLink',
+	'collection:object:quicklink' => 'QuickLinks',
 	
 	// menu's
 	'quicklinks:menu:entity:title' => "Toggle show in QuickLinks",
@@ -29,4 +30,4 @@ return array(
 	'quicklinks:action:delete:success' => "Your QuickLink was deleted",
 	
 	'quicklinks:settings:add_to_site_menu' => "Add QuickLinks to site menu",
-);
+];
