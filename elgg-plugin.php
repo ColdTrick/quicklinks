@@ -8,7 +8,7 @@ return [
 		[
 			'type' => 'object',
 			'subtype' => 'quicklink',
-			'class' => Quicklink::class,
+			'class' => QuickLink::class,
 		],
 	],
 	
