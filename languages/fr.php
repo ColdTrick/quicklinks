@@ -1,30 +1,18 @@
 <?php
+/**
+ * This file was created by Translation Editor v7.0-beta
+ * On 2018-12-14 15:40
+ */
 
-return array(
-	'quicklinks' => "Liens rapides",
-	'quicklinks:add' => "Ajouter un lien rapide",
-	'quicklinks:move' => "Déplacer",
-	'item:object:quicklink' => 'Liens rapides',
-	
-	// menu's
-	'quicklinks:menu:entity:title' => "Basculer vers le lien rapide",
-	
-	// widgets
-	'widgets:quicklinks:name' => "Liens rapides",
-	'widgets:quicklinks:description' => "Affiche une liste des liens rapides que vous avez fait",
-	
-	// views
-	'quicklinks:owner:title' => "Liens rapides de %s",
-	
-	'quicklinks:add:title' => "Ajouter un lien rapide",
-	'quicklinks:edit:url' => "URL du site web",
-	'quicklinks:edit:required' => "Les champs marqués d'une * sont obligatoires",
-	
-	// actions
-	'quicklinks:action:toggle:success:add' => "Lien rapide ajouté",
-	'quicklinks:action:toggle:success:remove' => "Lien rapide supprimé",
-	
-	'quicklinks:action:delete:error' => "Une erreur est survenue lors de la suppression de votre lien rapide",
-	'quicklinks:action:delete:success' => "Votre lien rapide a été supprimé",
-	'' => "",
+return array (
+  'quicklinks' => 'Liens rapides',
+  'quicklinks:add' => 'Ajouter un lien rapide',
+  'item:object:quicklink' => 'Liens rapides',
+  'quicklinks:menu:entity:title' => 'Basculer vers le lien rapide',
+  'widgets:quicklinks:name' => 'Liens rapides',
+  'widgets:quicklinks:description' => 'Affiche une liste des liens rapides que vous avez fait',
+  'quicklinks:add:title' => 'Ajouter un lien rapide',
+  'quicklinks:edit:url' => 'URL du site web',
+  'quicklinks:action:toggle:success:add' => 'Lien rapide ajouté',
+  'quicklinks:action:toggle:success:remove' => 'Lien rapide supprimé',
 );
