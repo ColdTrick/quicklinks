@@ -3,6 +3,7 @@
 return [
 	'quicklinks' => "QuickLinks",
 	'quicklinks:add' => "Add QuickLink",
+	'quicklinks:add:entity' => "Add QuickLink",
 	'quicklinks:remove' => "Remove QuickLink",
 	'item:object:quicklink' => 'QuickLink',
 	'collection:object:quicklink' => 'QuickLinks',

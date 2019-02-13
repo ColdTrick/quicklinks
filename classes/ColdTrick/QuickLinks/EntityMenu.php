@@ -105,7 +105,7 @@ class EntityMenu {
 			// build menu items
 			$items[] = \ElggMenuItem::factory([
 				'name' => 'quicklinks',
-				'text' => elgg_echo('quicklinks:add'),
+				'text' => elgg_echo('quicklinks:add:entity'),
 				'icon' => 'star-empty',
 				'href' => elgg_generate_action_url('quicklinks/toggle', ['guid' => $entity->guid]),
 				'title' => elgg_echo('quicklinks:menu:entity:title'),

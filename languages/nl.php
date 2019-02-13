@@ -12,6 +12,7 @@ return array (
   'quicklinks:edit:url' => 'Website URL',
   'quicklinks' => 'Mijn links',
   'quicklinks:add' => 'Link toevoegen',
+  'quicklinks:add:entity' => 'Link toevoegen',
   'quicklinks:menu:entity:title' => 'Toon in mijn links',
   'widgets:quicklinks:name' => 'Mijn links',
   'widgets:quicklinks:description' => 'Toont al je favoriete links',

@@ -7,6 +7,7 @@
 return array (
   'quicklinks' => 'Liens rapides',
   'quicklinks:add' => 'Ajouter un lien rapide',
+  'quicklinks:add:entity' => 'Ajouter un lien rapide',
   'item:object:quicklink' => 'Liens rapides',
   'quicklinks:menu:entity:title' => 'Basculer vers le lien rapide',
   'widgets:quicklinks:name' => 'Liens rapides',
