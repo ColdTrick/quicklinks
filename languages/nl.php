@@ -1,7 +1,7 @@
 <?php
 /**
  * This file was created by Translation Editor v7.0-beta
- * On 2018-12-14 15:40
+ * On 2019-03-27 19:02
  */
 
 return array (
@@ -12,7 +12,6 @@ return array (
   'quicklinks:edit:url' => 'Website URL',
   'quicklinks' => 'Mijn links',
   'quicklinks:add' => 'Link toevoegen',
-  'quicklinks:add:entity' => 'Link toevoegen',
   'quicklinks:menu:entity:title' => 'Toon in mijn links',
   'widgets:quicklinks:name' => 'Mijn links',
   'widgets:quicklinks:description' => 'Toont al je favoriete links',
