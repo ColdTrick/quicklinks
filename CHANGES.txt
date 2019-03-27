@@ -1,6 +1,14 @@
 Version history
 ===============
 
+2.0 (2019-03-27):
+
+- added: elasticsearch counter export
+- added: support for alternate presentations of menu items
+- changed: increased Elgg version requirement to 3.0
+- changed: updated for Elgg 3
+- fixed: always load the quicklinks dependency via menu items
+
 1.0.1 (2016-04-14):
 
 - changed: unified supported type/subtypes across plugin
