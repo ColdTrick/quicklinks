@@ -45,7 +45,7 @@ class QuickLinksMenu {
 			
 			$delete_action = "quicklinks/toggle?guid={$entity->guid}";
 			
-			if ($entity instanceof QuickLink) {
+			if ($entity instanceof \QuickLink) {
 				$delete_action = "quicklinks/delete?guid={$entity->guid}";
 			}
 			
