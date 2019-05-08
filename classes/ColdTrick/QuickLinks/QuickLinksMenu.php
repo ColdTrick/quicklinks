@@ -51,7 +51,7 @@ class QuickLinksMenu {
 			
 			$result[] = \ElggMenuItem::factory([
 				'name' => $entity->guid,
-				'text' => $entity->getDisplayName(),
+				'text' => $entity->getDisplayName() ?: elgg_echo('unknown'),
 				'href' => $entity->getURL(),
 				'icon_alt' => $can_edit ? 'delete' : null,
 				'priority' => $priority,
