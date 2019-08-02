@@ -86,7 +86,7 @@ class EntityMenu {
 	 *  - title => to create for a random name (url is required)
 	 *  - url => to create for a random url (title is suggested)
 	 *
-	 * @return false|ElggMenuItem
+	 * @return false|\ElggMenuItem[]
 	 */
 	public static function getToggleMenuItems($params = []) {
 		
