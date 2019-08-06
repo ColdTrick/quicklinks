@@ -11,11 +11,6 @@ if (!($page_owner instanceof ElggUser)) {
 	forward(REFERER);
 }
 
-// breadcrumb
-elgg_push_breadcrumb(elgg_echo('quicklinks'));
-elgg_push_breadcrumb($page_owner->name, "quicklinks/owner/{$page_owner->username}");
-elgg_push_breadcrumb(elgg_echo('add'));
-
 // build page elements
 $title_text = elgg_echo('quicklinks:add:title');
 
