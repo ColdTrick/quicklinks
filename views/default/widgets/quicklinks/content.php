@@ -30,6 +30,7 @@ if ($owner->guid === elgg_get_logged_in_user_guid()) {
 		'icon' => 'plus',
 		'text' => elgg_echo('quicklinks:add'),
 		'href' => elgg_generate_url('add:object:quicklink', ['guid' => elgg_get_logged_in_user_guid()]),
+		'class' => 'elgg-lightbox',
 	]);
 	
 	echo elgg_format_element('div', ['class' => 'elgg-widget-more'], $add);
