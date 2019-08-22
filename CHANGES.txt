@@ -1,6 +1,11 @@
 Version history
 ===============
 
+2.0.3 (2019-08-22):
+
+- fixed: removed quicklinks breadcrumbs
+- fixed: widget quicklink add link now opens in lightbox
+
 2.0.2 (2019-05-29):
 
 - fixed: handle entity without displayname
