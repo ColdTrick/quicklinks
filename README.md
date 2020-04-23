@@ -1,7 +1,7 @@
 QuickLinks
 ==========
 
-![Elgg 3.0](https://img.shields.io/badge/Elgg-3.0-green.svg)
+![Elgg 3.3](https://img.shields.io/badge/Elgg-3.3-green.svg)
 [![Build Status](https://scrutinizer-ci.com/g/ColdTrick/quicklinks/badges/build.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/quicklinks/build-status/master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/ColdTrick/quicklinks/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/ColdTrick/quicklinks/?branch=master)
 [![Latest Stable Version](https://poser.pugx.org/coldtrick/quicklinks/v/stable.svg)](https://packagist.org/packages/coldtrick/quicklinks)
