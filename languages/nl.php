@@ -1,10 +1,11 @@
 <?php
 /**
- * This file was created by Translation Editor v7.0-beta
- * On 2019-03-27 19:02
+ * This file was created by Translation Editor v7.0.4
+ * On 2020-05-18 12:20
  */
 
 return array (
+  'quicklinks:add:entity' => 'Link toevoegen',
   'quicklinks:remove' => 'Verwijder QuickLink',
   'collection:object:quicklink' => 'QuickLinks',
   'quicklinks:settings:add_to_site_menu' => 'Voeg QuickLinks toe aan site menu',
