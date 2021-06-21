@@ -1,12 +1,12 @@
-define(function(require) {
-	var $ = require('jquery');
-	var elgg = require('elgg');
+define(['jquery', 'elgg/Ajax', 'jquery-ui/widgets/sortable'], function($, Ajax) {
 
+	var ajax = new Ajax();
+	
 	$('#quicklinks, .elgg-menu-site .elgg-menu-item-quicklinks > .elgg-child-menu, .elgg-menu-quicklinks').sortable({
 		containment: 'parent',
 		items: 'li:not(.elgg-menu-item-add)',
 		update: function() {
-			elgg.action('quicklinks/reorder?' + $(this).sortable('serialize', {
+			ajax.action('quicklinks/reorder?' + $(this).sortable('serialize', {
 				attribute: 'class',
 				key: 'guids[]',
 				expression: /.*elgg-menu-item-(\d+).*/
@@ -21,7 +21,7 @@ define(function(require) {
 		var $anchor = $menu_item.find('> a');
 		$menu_item.hide();
 		
-		elgg.action($anchor.data().deleteAction, {
+		ajax.action($anchor.data().deleteAction, {
 			success: function() {
 				$menu_item.remove();
 			},

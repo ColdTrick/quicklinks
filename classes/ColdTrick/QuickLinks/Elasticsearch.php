@@ -21,11 +21,10 @@ class Elasticsearch {
 		$return = $hook->getValue();
 		
 		$return['quicklinks'] = elgg_call(ELGG_IGNORE_ACCESS, function() use ($entity) {
-			return elgg_get_entities([
+			return elgg_count_entities([
 				'relationship' => \QuickLink::RELATIONSHIP,
 				'relationship_guid' => $entity->guid,
 				'inverse_relationship' => true,
-				'count' => true,
 			]);
 		});
 		

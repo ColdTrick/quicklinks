@@ -3,7 +3,12 @@
 require_once(__DIR__ . '/lib/functions.php');
 
 return [
-	'bootstrap' => \ColdTrick\QuickLinks\Bootstrap::class,
+	'plugin' => [
+		'version' => '3.0',
+	],
+	'settings' => [
+		'add_to_site_menu' => 0,
+	],
 	'entities' => [
 		[
 			'type' => 'object',
@@ -21,6 +26,25 @@ return [
 			],
 		],
 	],
+	
+	'hooks' => [
+		'export:counters' => [
+			'elasticsearch' => [
+				'ColdTrick\QuickLinks\Elasticsearch::exportCounter' => [],
+			],
+		],
+		'register' => [
+			'menu:site' => [
+				'ColdTrick\QuickLinks\SiteMenu::register' => [],
+			],
+			'menu:entity' => [
+				'ColdTrick\QuickLinks\EntityMenu::register' => [],
+			],
+			'menu:quicklinks' => [
+				'ColdTrick\QuickLinks\QuickLinksMenu::register' => [],
+			],
+		],
+	],
 	'widgets' => [
 		'quicklinks' => [
 			'context' => ['index', 'dashboard'],
@@ -32,5 +56,10 @@ return [
 		'quicklinks/edit' => [],
 		'quicklinks/delete' => [],
 		'quicklinks/reorder' => [],
+	],
+	'view_extensions' => [
+		'elgg.css' => [
+			'quicklinks.css' => [],
+		],
 	],
 ];

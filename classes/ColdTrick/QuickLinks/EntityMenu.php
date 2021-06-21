@@ -97,7 +97,7 @@ class EntityMenu {
 		$items = [];
 		
 		$entity = elgg_extract('entity', $params);
-		if (($entity instanceof \ElggEntity) && $entity->guid) {
+		if ($entity instanceof \ElggEntity && $entity->guid) {
 			// do it the easy way
 			// is linked?
 			$linked = quicklinks_check_relationship($entity->guid);
@@ -106,7 +106,7 @@ class EntityMenu {
 			$items[] = \ElggMenuItem::factory([
 				'name' => 'quicklinks',
 				'text' => elgg_echo('quicklinks:add:entity'),
-				'icon' => 'star-empty',
+				'icon' => 'star-regular',
 				'href' => elgg_generate_action_url('quicklinks/toggle', ['guid' => $entity->guid]),
 				'title' => elgg_echo('quicklinks:menu:entity:title'),
 				'item_class' => $linked ? 'hidden' : '',
@@ -115,7 +115,7 @@ class EntityMenu {
 			
 			$items[] = \ElggMenuItem::factory([
 				'name' => 'quicklinks-remove',
-				'icon' => 'star-hover',
+				'icon' => 'star',
 				'text' => elgg_echo('quicklinks:remove'),
 				'href' => elgg_generate_action_url('quicklinks/toggle', ['guid' => $entity->guid]),
 				'title' => elgg_echo('quicklinks:menu:entity:title'),
@@ -135,7 +135,7 @@ class EntityMenu {
 		
 		$items[] = \ElggMenuItem::factory([
 			'name' => 'quicklinks',
-			'icon' => 'star-empty',
+			'icon' => 'star-regular',
 			'href' => elgg_generate_action_url('quicklinks/edit', [
 				'title' => elgg_extract('title', $params),
 				'url' => $url,
@@ -146,7 +146,7 @@ class EntityMenu {
 				
 		$items[] = \ElggMenuItem::factory([
 			'name' => 'quicklinks_remove',
-			'icon' => 'star-hover',
+			'icon' => 'star',
 			'href' => elgg_generate_action_url('quicklinks/delete', ['url' => $url]),
 			'title' => elgg_echo('quicklinks:menu:entity:title'),
 			'item_class' => $linked ? '' : 'hidden',

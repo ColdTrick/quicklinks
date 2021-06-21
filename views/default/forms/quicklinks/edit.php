@@ -7,7 +7,7 @@
  */
 
 $container = elgg_extract('container', $vars);
-if (!$container instanceof ElggEntity) {
+if (!$container instanceof \ElggEntity) {
 	return;
 }
 

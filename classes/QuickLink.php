@@ -32,5 +32,4 @@ class QuickLink extends ElggObject {
 	public function canComment($user_guid = 0, $default = null) {
 		return false;
 	}
-
 }

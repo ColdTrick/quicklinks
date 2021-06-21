@@ -14,7 +14,7 @@ if (empty($url)) {
 	return elgg_error_response(elgg_echo('error:missing_data'));
 }
 
-$entity = new QuickLink();
+$entity = new \QuickLink();
 $entity->container_guid = $container_guid;
 
 $entity->title = $title;

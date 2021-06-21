@@ -6,7 +6,7 @@
 
 return array (
   'quicklinks:add:entity' => 'Link toevoegen',
-  'quicklinks:remove' => 'Verwijder QuickLink',
+  'quicklinks:remove' => 'Verwijder link',
   'collection:object:quicklink' => 'QuickLinks',
   'quicklinks:settings:add_to_site_menu' => 'Voeg QuickLinks toe aan site menu',
   'item:object:quicklink' => 'QuickLink',

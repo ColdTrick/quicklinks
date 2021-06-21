@@ -11,15 +11,14 @@
  *
  * @return bool
  */
-function quicklinks_check_relationship($entity_guid, $user_guid = 0) {
+function quicklinks_check_relationship(int $entity_guid, int $user_guid = 0): bool {
 	static $cache;
 	
-	$entity_guid = sanitise_int($entity_guid, false);
 	if (empty($entity_guid)) {
 		return false;
 	}
 	
-	$user_guid = sanitise_int($user_guid, false);
+	$user_guid = (int) $user_guid;
 	if (empty($user_guid)) {
 		$user_guid = elgg_get_logged_in_user_guid();
 	}
@@ -54,31 +53,27 @@ function quicklinks_check_relationship($entity_guid, $user_guid = 0) {
  *
  * @return bool|QuickLink
  */
-function quicklinks_check_url($url, $return_entity = false) {
+function quicklinks_check_url(string $url, bool $return_entity = false) {
 	
 	if (empty($url)) {
 		return false;
 	}
-	
-	$return_entity = (bool) $return_entity;
-	
+		
 	$url = elgg_normalize_url($url);
 	$url = htmlspecialchars($url, ENT_QUOTES, 'UTF-8');
 	
-	$dbprefix = elgg_get_config('dbprefix');
-	
 	$options = [
 		'type' => 'object',
-		'subtype' => QuickLink::SUBTYPE,
+		'subtype' => \QuickLink::SUBTYPE,
 		'owner_guid' => elgg_get_logged_in_user_guid(),
 		'limit' => 1,
-		'joins' => ["JOIN {$dbprefix}objects_entity oe ON e.guid = oe.guid"],
-		'wheres' => ["oe.description = '{$url}'"],
+		'metadata_name_value_pair' => [
+			'description' => $url,
+		],
 	];
 	
 	if (!$return_entity) {
-		$options['count'] = true;
-		return (bool) elgg_get_entities($options);
+		return (bool) elgg_count_entities($options);
 	}
 	
 	$entities = elgg_get_entities($options);
