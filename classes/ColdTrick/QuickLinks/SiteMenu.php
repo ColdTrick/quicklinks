@@ -25,7 +25,7 @@ class SiteMenu {
 		
 		$result[] = \ElggMenuItem::factory([
 			'name' => 'quicklinks',
-			'icon' => 'star-empty',
+			'icon' => 'star-regular',
 			'text' => elgg_echo('quicklinks'),
 			'href' => false,
 		]);
