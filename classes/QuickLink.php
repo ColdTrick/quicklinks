@@ -24,12 +24,4 @@ class QuickLink extends ElggObject {
 	public function getURL() {
 		return elgg_normalize_url($this->description);
 	}
-	
-	/**
-	 * {@inheritDoc}
-	 * @see ElggObject::canComment()
-	 */
-	public function canComment($user_guid = 0, $default = null) {
-		return false;
-	}
 }

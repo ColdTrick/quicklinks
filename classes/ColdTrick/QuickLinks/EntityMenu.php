@@ -53,8 +53,6 @@ class EntityMenu {
 	 * @param string $type    the type of the entity
 	 * @param string $subtype the subtype of the entity
 	 *
-	 * @see is_registered_entity_type()
-	 *
 	 * @return bool
 	 */
 	public static function canLink($type, $subtype = null) {

@@ -92,7 +92,7 @@ function quicklinks_check_url(string $url, bool $return_entity = false) {
 function quicklinks_get_supported_types() {
 	
 	// default to registered entity types
-	$supported_types = get_registered_entity_types();
+	$supported_types = elgg_entity_types_with_capability('searchable');
 	
 	// blacklist some type/subtypes
 	$blacklist = [
