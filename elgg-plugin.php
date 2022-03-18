@@ -35,6 +35,9 @@ return [
 			'elasticsearch' => [
 				'ColdTrick\QuickLinks\Elasticsearch::exportCounter' => [],
 			],
+			'opensearch' => [
+				'ColdTrick\QuickLinks\Elasticsearch::exportCounter' => [],
+			],
 		],
 		'register' => [
 			'menu:site' => [
