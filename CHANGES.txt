@@ -1,6 +1,10 @@
 Version history
 ===============
 
+5.1.1 (2022-06-01):
+
+- fixed: missing translation
+
 5.1 (2022-03-30):
 
 - added: support for OpenSearch
