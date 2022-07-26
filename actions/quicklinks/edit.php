@@ -24,6 +24,7 @@ if (!$entity->save()) {
 	return elgg_error_response(elgg_echo('save:fail'));
 }
 
-add_entity_relationship(elgg_get_logged_in_user_guid(), \QuickLink::RELATIONSHIP, $entity->guid);
+$user = elgg_get_logged_in_user_entity();
+$user->addRelationship($entity->guid, \QuickLink::RELATIONSHIP);
 
 return elgg_ok_response(elgg_echo('save:success'));

@@ -4,14 +4,14 @@
  */
 
 $guid = (int) get_input('guid');
-$user_guid = elgg_get_logged_in_user_guid();
+$user = elgg_get_logged_in_user_entity();
 
-if (empty($guid) || empty($user_guid)) {
+if (empty($guid) || empty($user)) {
 	return elgg_error_response(elgg_echo('error:missing_data'));
 }
 
-if (check_entity_relationship($user_guid, \QuickLink::RELATIONSHIP, $guid)) {
-	if (!remove_entity_relationship($user_guid, \QuickLink::RELATIONSHIP, $guid)) {
+if ($user->hasRelationship($guid, \QuickLink::RELATIONSHIP)) {
+	if (!$user->removeRelationship($guid, \QuickLink::RELATIONSHIP)) {
 		return elgg_error_response(elgg_echo('save:fail'));
 	}
 	
@@ -19,7 +19,7 @@ if (check_entity_relationship($user_guid, \QuickLink::RELATIONSHIP, $guid)) {
 }
 
 // add the quicklink
-if (!add_entity_relationship($user_guid, \QuickLink::RELATIONSHIP, $guid)) {
+if (!$user->addRelationship($guid, \QuickLink::RELATIONSHIP)) {
 	return elgg_error_response(elgg_echo('save:fail'));
 }
 
