@@ -2,49 +2,54 @@
 
 namespace ColdTrick\QuickLinks;
 
+use Elgg\Menu\MenuItems;
+
+/**
+ * Add menu items to the entity menu
+ */
 class EntityMenu {
 
 	/**
-	 *Add menu items to the entity menu
+	 * Add menu items to the entity menu
 	 *
-	 * @param \Elgg\Hook $hook hook
+	 * @param \Elgg\Event $event 'register', 'menu:entity'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return null|MenuItems
 	 */
-	public static function register(\Elgg\Hook $hook) {
-		
+	public static function register(\Elgg\Event $event): ?MenuItems {
 		if (!elgg_is_logged_in()) {
-			return;
+			return null;
 		}
 		
-		$entity = $hook->getEntityParam();
-		if (!$entity) {
-			return;
+		$entity = $event->getEntityParam();
+		if (!$entity instanceof \ElggEntity) {
+			return null;
 		}
 		
 		if (!$entity->guid) {
 			// can sometimes happen for temp entities (eg search results)
-			return;
+			return null;
 		}
 		
-		// add quicklink toggle to registered entity types
+		// add QuickLink toggle to registered entity types
 		if (!self::canLink($entity->getType(), $entity->getSubtype())) {
 			// no registered entity types found
-			return;
+			return null;
 		}
 		
 		$items = self::getToggleMenuItems(['entity' => $entity]);
 		if (empty($items)) {
-			return;
+			return null;
 		}
 		
-		$returnvalue = $hook->getValue();
+		/* @var $return MenuItems */
+		$return = $event->getValue();
 		
 		foreach ($items as $item) {
-			$returnvalue[] = $item;
+			$return[] = $item;
 		}
 		
-		return $returnvalue;
+		return $return;
 	}
 	
 	/**
@@ -55,7 +60,7 @@ class EntityMenu {
 	 *
 	 * @return bool
 	 */
-	public static function canLink($type, $subtype = null) {
+	public static function canLink(string $type, string $subtype): bool {
 		
 		$supported_types = quicklinks_get_supported_types();
 		if (empty($supported_types) || !is_array($supported_types)) {
@@ -80,16 +85,16 @@ class EntityMenu {
 	 * Get menu items to toggle quicklink
 	 *
 	 * @param array $params supplied params, supports
-	 *  - entity => an ElggEntity to toggle
-	 *  - title => to create for a random name (url is required)
-	 *  - url => to create for a random url (title is suggested)
+	 *                      - entity => an ElggEntity to toggle
+	 *                      - title => to create for a random name (url is required)
+	 *                      - url => to create for a random url (title is suggested)
 	 *
-	 * @return false|\ElggMenuItem[]
+	 * @return null|\ElggMenuItem[]
 	 */
-	public static function getToggleMenuItems($params = []) {
+	public static function getToggleMenuItems($params = []): ?array {
 		
 		if (empty($params) || !is_array($params)) {
-			return false;
+			return null;
 		}
 		
 		$items = [];
@@ -103,8 +108,8 @@ class EntityMenu {
 			// build menu items
 			$items[] = \ElggMenuItem::factory([
 				'name' => 'quicklinks',
-				'text' => elgg_echo('quicklinks:add:entity'),
 				'icon' => 'star-regular',
+				'text' => elgg_echo('quicklinks:add:entity'),
 				'href' => elgg_generate_action_url('quicklinks/toggle', ['guid' => $entity->guid]),
 				'title' => elgg_echo('quicklinks:menu:entity:title'),
 				'item_class' => $linked ? 'hidden' : '',
@@ -126,7 +131,7 @@ class EntityMenu {
 		
 		$url = elgg_extract('url', $params);
 		if (empty($url)) {
-			return false;
+			return null;
 		}
 		
 		$linked = quicklinks_check_url($url);

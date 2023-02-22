@@ -2,26 +2,32 @@
 
 namespace ColdTrick\QuickLinks;
 
+use Elgg\Menu\MenuItems;
+
+/**
+ * Add menu items to the site menu
+ */
 class SiteMenu {
 	
 	/**
 	 * Registers QuickLinks menu items
 	 *
-	 * @param \Elgg\Hook $hook hook
+	 * @param \Elgg\Event $event 'register', 'menu:site'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return null|MenuItems
 	 */
-	public static function register(\Elgg\Hook $hook) {
+	public static function register(\Elgg\Event $event): ?MenuItems {
 		if (!elgg_get_plugin_setting('add_to_site_menu', 'quicklinks') || !elgg_is_logged_in()) {
-			return;
+			return null;
 		}
 		
 		$items = elgg()->menus->getUnpreparedMenu('quicklinks')->getItems();
 		if (empty($items)) {
-			return;
+			return null;
 		}
 		
-		$result = $hook->getValue();
+		/* @var $result MenuItems */
+		$result = $event->getValue();
 		
 		$result[] = \ElggMenuItem::factory([
 			'name' => 'quicklinks',

@@ -12,23 +12,18 @@
  * @return bool
  */
 function quicklinks_check_relationship(int $entity_guid, int $user_guid = 0): bool {
-	static $cache;
+	static $cache = [];
 	
 	if (empty($entity_guid)) {
 		return false;
 	}
 	
-	$user_guid = (int) $user_guid;
 	if (empty($user_guid)) {
 		$user_guid = elgg_get_logged_in_user_guid();
 	}
 	
 	if (empty($user_guid)) {
 		return false;
-	}
-	
-	if (!is_array($cache)) {
-		$cache = [];
 	}
 	
 	if (!isset($cache[$user_guid])) {
@@ -48,7 +43,7 @@ function quicklinks_check_relationship(int $entity_guid, int $user_guid = 0): bo
 /**
  * Check if a quicklink exists for a given URL
  *
- * @param string $url the url to check
+ * @param string $url           the url to check
  * @param bool   $return_entity return the quicklink item (if found), default: false
  *
  * @return bool|QuickLink
@@ -85,11 +80,11 @@ function quicklinks_check_url(string $url, bool $return_entity = false) {
 }
 
 /**
- * Get the list of supported type/subtypes for quicklinks
+ * Get the list of supported type/subtypes for QuickLinks
  *
  * @return array
  */
-function quicklinks_get_supported_types() {
+function quicklinks_get_supported_types(): array {
 	
 	// default to registered entity types
 	$supported_types = elgg_entity_types_with_capability('searchable');
@@ -97,7 +92,6 @@ function quicklinks_get_supported_types() {
 	// blacklist some type/subtypes
 	$blacklist = [
 		'object' => [
-			'discussion_reply',
 			'comment',
 			'thewire',
 		],
@@ -122,5 +116,5 @@ function quicklinks_get_supported_types() {
 	}
 	
 	// allow others to change the list
-	return elgg_trigger_plugin_hook('type_subtypes', 'quicklinks', $supported_types, $supported_types);
+	return elgg_trigger_event_results('type_subtypes', 'quicklinks', $supported_types, $supported_types);
 }

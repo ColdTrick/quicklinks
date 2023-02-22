@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * QuickLink entity class
+ */
 class QuickLink extends ElggObject {
 	
 	const SUBTYPE = 'quicklink';
@@ -8,7 +11,6 @@ class QuickLink extends ElggObject {
 	
 	/**
 	 * {@inheritDoc}
-	 * @see ElggObject::initializeAttributes()
 	 */
 	protected function initializeAttributes() {
 		parent::initializeAttributes();
@@ -19,9 +21,8 @@ class QuickLink extends ElggObject {
 	
 	/**
 	 * {@inheritDoc}
-	 * @see ElggEntity::getURL()
 	 */
-	public function getURL() {
+	public function getURL(): string {
 		return elgg_normalize_url($this->description);
 	}
 }

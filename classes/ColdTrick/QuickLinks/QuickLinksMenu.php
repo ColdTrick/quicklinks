@@ -3,23 +3,28 @@
 namespace ColdTrick\QuickLinks;
 
 use Elgg\Database\Clauses\OrderByClause;
+use Elgg\Menu\MenuItems;
 
+/**
+ * Add menu items to the quicklinks menu
+ */
 class QuickLinksMenu {
 	
 	/**
 	 * Registers QuickLinks menu items
 	 *
-	 * @param \Elgg\Hook $hook hook
+	 * @param \Elgg\Event $event 'regsiter', 'menu:quicklinks'
 	 *
-	 * @return void|\ElggMenuItem[]
+	 * @return null|MenuItems
 	 */
-	public static function register(\Elgg\Hook $hook) {
-		$owner = $hook->getParam('owner', elgg_get_logged_in_user_entity());
+	public static function register(\Elgg\Event $event): ?MenuItems {
+		$owner = $event->getParam('owner', elgg_get_logged_in_user_entity());
 		if (!$owner instanceof \ElggUser) {
-			return;
+			return null;
 		}
 		
-		$result = $hook->getValue();
+		/* @var $result MenuItems */
+		$result = $event->getValue();
 		
 		$entities = elgg_get_entities([
 			'type_subtype_pairs' => self::getTypeSubtypePairs(),
@@ -29,7 +34,7 @@ class QuickLinksMenu {
 			'order_by' => new OrderByClause('r.time_created', 'DESC'),
 		]);
 		
-		$configured_priorities = $owner->getPrivateSetting('quicklinks_order');
+		$configured_priorities = $owner->quicklinks_order;
 		if ($configured_priorities) {
 			$configured_priorities = json_decode($configured_priorities);
 		}
@@ -66,9 +71,9 @@ class QuickLinksMenu {
 	/**
 	 * Returns type_subtype pairs for use in elgg_get_entities when fetching quicklink related entities
 	 *
-	 * @return []
+	 * @return array
 	 */
-	protected static function getTypeSubtypePairs() {
+	protected static function getTypeSubtypePairs(): array {
 		$type_subtypes = quicklinks_get_supported_types();
 		if (!is_array($type_subtypes)) {
 			$type_subtypes = [];
@@ -78,6 +83,7 @@ class QuickLinksMenu {
 		if (!isset($type_subtypes['object'])) {
 			$type_subtypes['object'] = [];
 		}
+		
 		if (!in_array(\QuickLink::SUBTYPE, $type_subtypes['object'])) {
 			$type_subtypes['object'][] = \QuickLink::SUBTYPE;
 		}

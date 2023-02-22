@@ -2,23 +2,26 @@
 
 namespace ColdTrick\QuickLinks;
 
+/**
+ * Export information to Elasticsearch or OpenSearch
+ */
 class Elasticsearch {
 	
 	/**
-	 * Export quicklinks count
+	 * Export QuickLinks count
 	 *
-	 * @param \Elgg\Hook $hook 'export:counters', 'elasticsearch'|'opensearch'
+	 * @param \Elgg\Event $event 'export:counters', 'elasticsearch'|'opensearch'
 	 *
-	 * @return void|array
+	 * @return null|array
 	 */
-	public static function exportCounter(\Elgg\Hook $hook) {
+	public static function exportCounter(\Elgg\Event $event): ?array {
 		
-		$entity = $hook->getEntityParam();
+		$entity = $event->getEntityParam();
 		if (!$entity instanceof \ElggEntity) {
-			return;
+			return null;
 		}
 		
-		$return = $hook->getValue();
+		$return = $event->getValue();
 		
 		$return['quicklinks'] = elgg_call(ELGG_IGNORE_ACCESS, function() use ($entity) {
 			return elgg_count_entities([

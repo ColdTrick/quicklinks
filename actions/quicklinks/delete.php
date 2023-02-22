@@ -19,7 +19,7 @@ if (!empty($guid)) {
 	$entity = quicklinks_check_url($url, true);
 }
 
-if (!$entity instanceof \QuickLink || !$entity->canEdit()) {
+if (!$entity instanceof \QuickLink || !$entity->canDelete()) {
 	return elgg_error_response(elgg_echo('entity:delete:permission_denied'));
 }
 

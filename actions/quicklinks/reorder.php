@@ -5,5 +5,5 @@ $ordered_guids = get_input('guids', '');
 
 $container = get_entity($container_guid);
 if (!empty($container)) {
-	$container->setPrivateSetting('quicklinks_order', json_encode($ordered_guids));
+	$container->quicklinks_order = json_encode($ordered_guids);
 }

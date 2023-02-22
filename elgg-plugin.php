@@ -19,18 +19,23 @@ return [
 			],
 		],
 	],
-	
 	'routes' => [
 		'add:object:quicklink' => [
-			'path' => '/quicklinks/add/{guid?}',
+			'path' => '/quicklinks/add/{guid}',
 			'resource' => 'quicklinks/add',
 			'middleware' => [
 				\Elgg\Router\Middleware\Gatekeeper::class,
+				\Elgg\Router\Middleware\UserPageOwnerCanEditGatekeeper::class,
 			],
 		],
 	],
-	
-	'hooks' => [
+	'actions' => [
+		'quicklinks/toggle' => [],
+		'quicklinks/edit' => [],
+		'quicklinks/delete' => [],
+		'quicklinks/reorder' => [],
+	],
+	'events' => [
 		'export:counters' => [
 			'elasticsearch' => [
 				'ColdTrick\QuickLinks\Elasticsearch::exportCounter' => [],
@@ -51,21 +56,14 @@ return [
 			],
 		],
 	],
-	'widgets' => [
-		'quicklinks' => [
-			'context' => ['index', 'dashboard'],
-		],
-	],
-		
-	'actions' => [
-		'quicklinks/toggle' => [],
-		'quicklinks/edit' => [],
-		'quicklinks/delete' => [],
-		'quicklinks/reorder' => [],
-	],
 	'view_extensions' => [
 		'elgg.css' => [
 			'quicklinks.css' => [],
+		],
+	],
+	'widgets' => [
+		'quicklinks' => [
+			'context' => ['index', 'dashboard'],
 		],
 	],
 ];
