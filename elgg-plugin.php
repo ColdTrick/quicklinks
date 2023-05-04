@@ -45,14 +45,14 @@ return [
 			],
 		],
 		'register' => [
-			'menu:site' => [
-				'ColdTrick\QuickLinks\SiteMenu::register' => [],
-			],
 			'menu:entity' => [
-				'ColdTrick\QuickLinks\EntityMenu::register' => [],
+				'ColdTrick\QuickLinks\Menus\Entity::register' => [],
 			],
 			'menu:quicklinks' => [
-				'ColdTrick\QuickLinks\QuickLinksMenu::register' => [],
+				'ColdTrick\QuickLinks\Menus\QuickLinks::register' => [],
+			],
+			'menu:site' => [
+				'ColdTrick\QuickLinks\Menus\Site::register' => [],
 			],
 		],
 	],

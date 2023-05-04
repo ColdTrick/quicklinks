@@ -1,6 +1,6 @@
 <?php
 
-namespace ColdTrick\QuickLinks;
+namespace ColdTrick\QuickLinks\Menus;
 
 use Elgg\Database\Clauses\OrderByClause;
 use Elgg\Menu\MenuItems;
@@ -8,7 +8,7 @@ use Elgg\Menu\MenuItems;
 /**
  * Add menu items to the quicklinks menu
  */
-class QuickLinksMenu {
+class QuickLinks {
 	
 	/**
 	 * Registers QuickLinks menu items

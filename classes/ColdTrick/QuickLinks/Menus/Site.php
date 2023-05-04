@@ -1,13 +1,13 @@
 <?php
 
-namespace ColdTrick\QuickLinks;
+namespace ColdTrick\QuickLinks\Menus;
 
 use Elgg\Menu\MenuItems;
 
 /**
  * Add menu items to the site menu
  */
-class SiteMenu {
+class Site {
 	
 	/**
 	 * Registers QuickLinks menu items
