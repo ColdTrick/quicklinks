@@ -2,11 +2,12 @@
 
 /**
  * QuickLink entity class
+ *
+ * @property string $description URL of the quicklink
  */
-class QuickLink extends ElggObject {
+class QuickLink extends \ElggObject {
 	
 	const SUBTYPE = 'quicklink';
-
 	const RELATIONSHIP = 'quicklinks';
 	
 	/**
