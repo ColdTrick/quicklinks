@@ -4,7 +4,7 @@ require_once(__DIR__ . '/lib/functions.php');
 
 return [
 	'plugin' => [
-		'version' => '7.0',
+		'version' => '7.0.1',
 	],
 	'settings' => [
 		'add_to_site_menu' => 0,
