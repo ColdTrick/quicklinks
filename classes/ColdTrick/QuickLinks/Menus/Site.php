@@ -3,6 +3,8 @@
 namespace ColdTrick\QuickLinks\Menus;
 
 use Elgg\Menu\MenuItems;
+use Elgg\Menu\MenuSection;
+use Elgg\Menu\PreparedMenu;
 
 /**
  * Add menu items to the site menu
@@ -55,5 +57,40 @@ class Site {
 		]);
 		
 		return $result;
+	}
+	
+	/**
+	 * Fix the ordering of quicklink child menu items
+	 *
+	 * @param \Elgg\Event $event 'prepare', 'menu:site'
+	 *
+	 * @return null|PreparedMenu
+	 */
+	public static function prepareQuickLinksOrdering(\Elgg\Event $event): ?PreparedMenu {
+		if (!elgg_get_plugin_setting('add_to_site_menu', 'quicklinks') || !elgg_is_logged_in()) {
+			return null;
+		}
+		
+		if ($event->getParam('sort_by') === 'priority') {
+			return null;
+		}
+		
+		/* @var $menu PreparedMenu */
+		$menu = $event->getValue();
+		
+		/* @var $items MenuSection */
+		foreach ($menu as $section => $items) {
+			if (!$items->has('quicklinks')) {
+				continue;
+			}
+			
+			/* @var $quicklinks \ElggMenuItem */
+			$quicklinks = $items->get('quicklinks');
+			$quicklinks->sortChildren('\ElggMenuBuilder::compareByPriority');
+			
+			break;
+		}
+		
+		return $menu;
 	}
 }

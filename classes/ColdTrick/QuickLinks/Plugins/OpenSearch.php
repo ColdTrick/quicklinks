@@ -1,21 +1,20 @@
 <?php
 
-namespace ColdTrick\QuickLinks;
+namespace ColdTrick\QuickLinks\Plugins;
 
 /**
- * Export information to Elasticsearch or OpenSearch
+ * Export information to OpenSearch
  */
-class Elasticsearch {
+class OpenSearch {
 	
 	/**
 	 * Export QuickLinks count
 	 *
-	 * @param \Elgg\Event $event 'export:counters', 'elasticsearch'|'opensearch'
+	 * @param \Elgg\Event $event 'export:counters', 'opensearch'
 	 *
 	 * @return null|array
 	 */
 	public static function exportCounter(\Elgg\Event $event): ?array {
-		
 		$entity = $event->getEntityParam();
 		if (!$entity instanceof \ElggEntity) {
 			return null;

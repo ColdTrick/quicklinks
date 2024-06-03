@@ -13,7 +13,7 @@ return [
 		[
 			'type' => 'object',
 			'subtype' => 'quicklink',
-			'class' => QuickLink::class,
+			'class' => \QuickLink::class,
 			'capabilities' => [
 				'commentable' => false,
 			],
@@ -37,11 +37,13 @@ return [
 	],
 	'events' => [
 		'export:counters' => [
-			'elasticsearch' => [
-				'ColdTrick\QuickLinks\Elasticsearch::exportCounter' => [],
-			],
 			'opensearch' => [
-				'ColdTrick\QuickLinks\Elasticsearch::exportCounter' => [],
+				'ColdTrick\QuickLinks\Plugins\OpenSearch::exportCounter' => [],
+			],
+		],
+		'prepare' => [
+			'menu:site' => [
+				'ColdTrick\QuickLinks\Menus\Site::prepareQuickLinksOrdering' => [],
 			],
 		],
 		'register' => [
@@ -58,7 +60,7 @@ return [
 	],
 	'view_extensions' => [
 		'elgg.css' => [
-			'quicklinks.css' => [],
+			'quicklinks/site.css' => [],
 		],
 	],
 	'widgets' => [

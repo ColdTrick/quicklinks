@@ -35,8 +35,8 @@ class QuickLinks {
 		]);
 		
 		$configured_priorities = $owner->quicklinks_order;
-		if ($configured_priorities) {
-			$configured_priorities = json_decode($configured_priorities);
+		if (!empty($configured_priorities)) {
+			$configured_priorities = json_decode($configured_priorities, true);
 		}
 		
 		$can_edit = $owner->canEdit();
@@ -48,10 +48,14 @@ class QuickLinks {
 				$priority = array_search($entity->guid, $configured_priorities);
 			}
 			
-			$delete_action = "quicklinks/toggle?guid={$entity->guid}";
+			$delete_action = elgg_generate_action_url('quicklinks/toggle', [
+				'guid' => $entity->guid,
+			]);
 			
 			if ($entity instanceof \QuickLink) {
-				$delete_action = "quicklinks/delete?guid={$entity->guid}";
+				$delete_action = elgg_generate_action_url('quicklinks/delete', [
+					'guid' => $entity->guid,
+				]);
 			}
 			
 			$result[] = \ElggMenuItem::factory([
@@ -60,7 +64,7 @@ class QuickLinks {
 				'href' => $entity->getURL(),
 				'icon_alt' => $can_edit ? 'delete' : null,
 				'priority' => $priority,
-				'deps' => ['quicklinks'],
+				'deps' => ['quicklinks/quicklinks_menu'],
 				'data-delete-action' => $delete_action,
 			]);
 		}
@@ -75,9 +79,6 @@ class QuickLinks {
 	 */
 	protected static function getTypeSubtypePairs(): array {
 		$type_subtypes = quicklinks_get_supported_types();
-		if (!is_array($type_subtypes)) {
-			$type_subtypes = [];
-		}
 		
 		// add quicklinks subtype
 		if (!isset($type_subtypes['object'])) {

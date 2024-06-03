@@ -11,7 +11,7 @@ class QuickLink extends \ElggObject {
 	const RELATIONSHIP = 'quicklinks';
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	protected function initializeAttributes() {
 		parent::initializeAttributes();
@@ -21,7 +21,7 @@ class QuickLink extends \ElggObject {
 	}
 	
 	/**
-	 * {@inheritDoc}
+	 * {@inheritdoc}
 	 */
 	public function getURL(): string {
 		return elgg_normalize_url($this->description);

@@ -61,9 +61,8 @@ class Entity {
 	 * @return bool
 	 */
 	public static function canLink(string $type, string $subtype): bool {
-		
 		$supported_types = quicklinks_get_supported_types();
-		if (empty($supported_types) || !is_array($supported_types)) {
+		if (empty($supported_types)) {
 			return false;
 		}
 		
@@ -91,9 +90,8 @@ class Entity {
 	 *
 	 * @return null|\ElggMenuItem[]
 	 */
-	public static function getToggleMenuItems($params = []): ?array {
-		
-		if (empty($params) || !is_array($params)) {
+	public static function getToggleMenuItems(array $params = []): ?array {
+		if (empty($params)) {
 			return null;
 		}
 		
