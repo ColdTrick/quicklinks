@@ -4,6 +4,7 @@ require_once(__DIR__ . '/lib/functions.php');
 
 return [
 	'plugin' => [
+		'name' => 'QuickLinks',
 		'version' => '8.0',
 	],
 	'settings' => [
