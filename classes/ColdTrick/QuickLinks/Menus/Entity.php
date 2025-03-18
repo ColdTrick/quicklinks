@@ -109,7 +109,7 @@ class Entity {
 				'icon' => 'star-regular',
 				'text' => elgg_echo('quicklinks:add:entity'),
 				'href' => elgg_generate_action_url('quicklinks/toggle', ['guid' => $entity->guid]),
-				'title' => elgg_echo('quicklinks:menu:entity:title'),
+				'title' => elgg_echo('quicklinks:menu:entity:title:add'),
 				'item_class' => $linked ? 'hidden' : '',
 				'data-toggle' => 'quicklinks-remove',
 			]);
@@ -119,7 +119,7 @@ class Entity {
 				'icon' => 'star',
 				'text' => elgg_echo('quicklinks:remove'),
 				'href' => elgg_generate_action_url('quicklinks/toggle', ['guid' => $entity->guid]),
-				'title' => elgg_echo('quicklinks:menu:entity:title'),
+				'title' => elgg_echo('quicklinks:menu:entity:title:remove'),
 				'item_class' => $linked ? '' : 'hidden',
 				'data-toggle' => 'quicklinks',
 			]);
@@ -141,7 +141,7 @@ class Entity {
 				'title' => elgg_extract('title', $params),
 				'url' => $url,
 			]),
-			'title' => elgg_echo('quicklinks:menu:entity:title'),
+			'title' => elgg_echo('quicklinks:menu:entity:title:add'),
 			'item_class' => $linked ? 'hidden' : '',
 		]);
 				
@@ -149,7 +149,7 @@ class Entity {
 			'name' => 'quicklinks_remove',
 			'icon' => 'star',
 			'href' => elgg_generate_action_url('quicklinks/delete', ['url' => $url]),
-			'title' => elgg_echo('quicklinks:menu:entity:title'),
+			'title' => elgg_echo('quicklinks:menu:entity:title:remove'),
 			'item_class' => $linked ? '' : 'hidden',
 		]);
 		

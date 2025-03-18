@@ -1,10 +1,12 @@
 <?php
 /**
- * This file was created by Translation Editor v11.1
- * On 2023-05-17 15:08
+ * This file was created by Translation Editor v14.0.2
+ * On 2025-03-18 10:30
  */
 
 return array (
+  'quicklinks:menu:entity:title:add' => 'Toevoegen aan QuickLinks',
+  'quicklinks:menu:entity:title:remove' => 'Verwijderen uit QuickLinks',
   'quicklinks:add:entity' => 'Link toevoegen',
   'quicklinks:remove' => 'Verwijder link',
   'collection:object:quicklink' => 'QuickLinks',
@@ -13,7 +15,6 @@ return array (
   'quicklinks:edit:url' => 'Website URL',
   'quicklinks' => 'Mijn links',
   'quicklinks:add' => 'Link toevoegen',
-  'quicklinks:menu:entity:title' => 'Toon in mijn links',
   'widgets:quicklinks:name' => 'Mijn links',
   'widgets:quicklinks:description' => 'Toont al je favoriete links',
   'quicklinks:add:title' => 'Link toevoegen',

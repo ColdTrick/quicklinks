@@ -9,7 +9,8 @@ return [
 	'collection:object:quicklink' => 'QuickLinks',
 	
 	// menu's
-	'quicklinks:menu:entity:title' => "Toggle show in QuickLinks",
+	'quicklinks:menu:entity:title:add' => "Add to QuickLinks",
+	'quicklinks:menu:entity:title:remove' => "Remove from QuickLinks",
 	
 	// widgets
 	'widgets:quicklinks:name' => "QuickLinks",
