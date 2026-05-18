@@ -15,9 +15,6 @@ return [
 			'type' => 'object',
 			'subtype' => 'quicklink',
 			'class' => \QuickLink::class,
-			'capabilities' => [
-				'commentable' => false,
-			],
 		],
 	],
 	'routes' => [
