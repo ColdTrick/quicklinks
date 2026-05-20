@@ -106,7 +106,7 @@ class Entity {
 			// build menu items
 			$items[] = \ElggMenuItem::factory([
 				'name' => 'quicklinks',
-				'icon' => 'star',
+				'icon' => 'star-regular',
 				'text' => elgg_echo('quicklinks:add:entity'),
 				'href' => elgg_generate_action_url('quicklinks/toggle', ['guid' => $entity->guid]),
 				'title' => elgg_echo('quicklinks:menu:entity:title:add'),
@@ -147,7 +147,7 @@ class Entity {
 				
 		$items[] = \ElggMenuItem::factory([
 			'name' => 'quicklinks_remove',
-			'icon' => 'star',
+			'icon' => 'star-solid',
 			'href' => elgg_generate_action_url('quicklinks/delete', ['url' => $url]),
 			'title' => elgg_echo('quicklinks:menu:entity:title:remove'),
 			'item_class' => $linked ? '' : 'hidden',
