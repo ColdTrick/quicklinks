@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.0.2 (2026-05-29):
+
+- several small chores/fixes
+
 8.0.1 (2025-03-27):
 
 - fixed: use distinct title in entity menu items

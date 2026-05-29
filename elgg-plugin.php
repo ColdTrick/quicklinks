@@ -5,7 +5,7 @@ require_once(__DIR__ . '/lib/functions.php');
 return [
 	'plugin' => [
 		'name' => 'QuickLinks',
-		'version' => '8.0.1',
+		'version' => '8.0.2',
 	],
 	'settings' => [
 		'add_to_site_menu' => 0,
