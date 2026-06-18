@@ -17,7 +17,7 @@ class Entity {
 	 * @return null|MenuItems
 	 */
 	public static function register(\Elgg\Event $event): ?MenuItems {
-		if (!elgg_is_logged_in()) {
+		if (!elgg_is_logged_in() || elgg_in_context('admin')) {
 			return null;
 		}
 		
