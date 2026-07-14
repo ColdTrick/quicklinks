@@ -58,14 +58,16 @@ class QuickLinks {
 				]);
 			}
 			
+			$url = $entity->getURL();
 			$result[] = \ElggMenuItem::factory([
 				'name' => $entity->guid,
 				'text' => $entity->getDisplayName() ?: elgg_echo('unknown'),
-				'href' => $entity->getURL(),
+				'href' => $url,
 				'icon_alt' => $can_edit ? 'delete' : null,
 				'priority' => $priority,
 				'deps' => ['quicklinks/quicklinks_menu'],
 				'data-delete-action' => $delete_action,
+				'target' => empty(elgg_normalize_site_url($url)) ? '_blank' : null,
 			]);
 		}
 		

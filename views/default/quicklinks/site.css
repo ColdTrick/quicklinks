@@ -1,11 +1,6 @@
 .elgg-menu-site .elgg-menu-item-quicklinks > .elgg-child-menu,
 .elgg-menu-quicklinks {
-	
-	.elgg-icon-delete {
+	li:not(:hover) .elgg-icon-delete {
 		visibility: hidden;
-	}
-	
-	li:hover .elgg-icon-delete {
-		visibility: visible;
 	}
 }
