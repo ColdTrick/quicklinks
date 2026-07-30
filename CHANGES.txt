@@ -1,6 +1,11 @@
 Version history
 ===============
 
+8.1 (2026-07-30):
+
+- changed: menu item opens in blank window if it is an external link
+- fixed: do not show entity menu item in admin context
+
 8.0.2 (2026-05-29):
 
 - several small chores/fixes
