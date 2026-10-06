@@ -8,7 +8,7 @@ return [
 		'version' => '8.1',
 	],
 	'settings' => [
-		'add_to_site_menu' => 0,
+		'add_to_site_menu' => false,
 	],
 	'entities' => [
 		[
