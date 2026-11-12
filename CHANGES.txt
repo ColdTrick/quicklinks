@@ -1,6 +1,10 @@
 Version history
 ===============
 
+8.1.1 (2026-11-12):
+
+- several small chores/fixes
+
 8.1 (2026-07-30):
 
 - changed: menu item opens in blank window if it is an external link
