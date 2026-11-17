@@ -3,7 +3,7 @@
  * show a number of quicklinks in a widget
  */
 
-/* @var $widget \ElggWidget */
+/** @var \ElggWidget $widget */
 $widget = elgg_extract('entity', $vars);
 
 $owner = $widget->getOwnerEntity();

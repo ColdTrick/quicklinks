@@ -23,7 +23,7 @@ class QuickLinks {
 			return null;
 		}
 		
-		/* @var $result MenuItems */
+		/** @var MenuItems $result */
 		$result = $event->getValue();
 		
 		$entities = elgg_get_entities([

@@ -42,7 +42,7 @@ class Entity {
 			return null;
 		}
 		
-		/* @var $return MenuItems */
+		/** @var MenuItems $return */
 		$return = $event->getValue();
 		
 		foreach ($items as $item) {
